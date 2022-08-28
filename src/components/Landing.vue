@@ -21,6 +21,25 @@
             <input type="text" placeholder="Search" class="searchbox_div_input">
         </div> 
     </nav>
+
+    <section class="main_image_showcase">
+        <h1>Chemistry Supplies for Schools and Students</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
+        <button>Sign Up Now</button>
+    </section>
+
+   <!-- <section>
+        <select name="Sort By" id="">
+            <option value="">Alphabetical Order</option>
+            <option value="">Lowest Price</option>
+            <option value="">Highest Price</option>
+        </select>
+        <select name="Sort By" id="">
+            <option value="">Chemicals</option>
+            <option value="">Lab Equipment</option>
+            <option value="">Glassware</option>
+        </select>
+    </section>-->
 </template>
 
 <script>
