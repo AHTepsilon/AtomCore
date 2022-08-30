@@ -3,9 +3,9 @@
         <img alt="AtomCore logo" class="AClogo" src="@/assets/atomCoreLogo.png"/>
 
         <ul class="header_buttons">
-            <li class="header_buttons_item"><img src="@/assets/shoppingCartBtn.png" alt=""/></li>
-            <li class="header_buttons_item"><img src="@/assets/notifBtn.png" alt=""/></li>
-            <li class="header_buttons_item"><img src="@/assets/userBtn.png" alt=""/></li>
+            <li class="header_buttons_item"><img class="header_buttons_item_img" src="@/assets/shoppingCartBtn.png" alt=""/></li>
+            <li class="header_buttons_item"><img class="header_buttons_item_img" src="@/assets/notifBtn.png" alt=""/></li>
+            <li class="header_buttons_item"><img class="header_buttons_item_img" src="@/assets/userBtn.png" alt=""/></li>
         </ul>
     </header>
     <nav>
@@ -48,8 +48,9 @@
 
 <style lang="scss">
 
-    $headerColor: #00FFFF;
+    $headerColor: #FFFFFF;
     $babyBlue: #DAE4FF;
+    $darkCyan: #A6BFFF;
 
     header
     {
@@ -58,7 +59,7 @@
 
         display: flex;
         flex-direction: row;
-
+        justify-content: space-between;
         padding: 20px;
 
         .header_buttons
@@ -74,6 +75,11 @@
                 height: 50px;
                 list-style: none;
                 border-radius: 50px;
+
+                &:hover{
+                    background: darken($color: $babyBlue, $amount: 5);
+                    cursor: pointer;
+                }
 
                 img
                 {
@@ -95,6 +101,7 @@
 
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
 
         .nav_buttons
         {
@@ -110,6 +117,11 @@
                 border-radius: 50px;
 
                 margin: 20px;
+
+                &:hover{
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
             
         }
@@ -121,12 +133,20 @@
             {
                 width: 40px;
                 height: 40px;
+                background: $darkCyan;
+                border: none;
+
+                &:hover{
+                    background: darken($color: $darkCyan, $amount: 5);
+                    cursor: pointer;
+                }
             }
 
             &_input
             {
                 width: 300px;
                 height: 40px;
+                border: none;
             }
 
         }
