@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss">
-        $headerColor: #FFFFFF;
+    $headerColor: #FFFFFF;
     $babyBlue: #DAE4FF;
     $darkCyan: #A6BFFF;
 

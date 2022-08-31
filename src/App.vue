@@ -2,12 +2,16 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Landing from './components/Landing.vue'
 import Header from './components/Header.vue'
+import Categories from './components/Categories.vue'
+import AddProduct from './components/AddProduct.vue'
 
 export default {
   components: {
     Landing,
-    Header
-  }
+    Header,
+    Categories,
+    AddProduct
+}
 }
 </script>
 
