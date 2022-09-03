@@ -1,7 +1,10 @@
 <template>
         <header>
-        <img alt="AtomCore logo" class="AClogo" src="\atomCoreLogo.png"/>
-
+        
+		<RouterLink :to="{name: 'home'}">
+			<img alt="AtomCore logo" class="AClogo" src="\atomCoreLogo.png"/>
+		</RouterLink>
+		
         <ul class="header_buttons">
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
@@ -10,7 +13,7 @@
     </header>
     <nav>
         <ul class="nav_buttons">
-            <li class="nav_buttons_item">Categories</li>
+            <RouterLink :to="{name: 'addProduct'}"><li class="nav_buttons_item">Categories</li></RouterLink>
             <li class="nav_buttons_item">Resources</li>
             <li class="nav_buttons_item">Subjects</li>
             <li class="nav_buttons_item">Shop by Bulk</li>
@@ -24,6 +27,8 @@
 </template>
 
 <script>
+
+	import {RouterLink} from "vue-router";
 
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { RouterLink, RouterView } from 'vue-router'
 import Landing from './components/Landing.vue'
 import Header from './components/Header.vue'
@@ -16,13 +16,10 @@ export default {
 </script>
 
 <template>
-
-  <Header />
-  <Landing />
-
+	<Header />
   <RouterView />
 </template>
 
 <style scoped>
-
+	
 </style>
