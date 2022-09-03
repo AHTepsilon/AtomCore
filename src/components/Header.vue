@@ -6,6 +6,7 @@
 		</RouterLink>
 		
         <ul class="header_buttons">
+			<RouterLink :to="{name: 'addProduct'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li>
@@ -13,7 +14,7 @@
     </header>
     <nav>
         <ul class="nav_buttons">
-            <RouterLink :to="{name: 'addProduct'}"><li class="nav_buttons_item">Categories</li></RouterLink>
+            <RouterLink :to="{name: 'categories'}"><li class="nav_buttons_item">Categories</li></RouterLink>
             <li class="nav_buttons_item">Resources</li>
             <li class="nav_buttons_item">Subjects</li>
             <li class="nav_buttons_item">Shop by Bulk</li>
