@@ -10,15 +10,30 @@
             <form action="" class="addProduct_div_form">
                 <input class="addProduct_div_form_input" type="text" placeholder="Product Name">
                 <select class="addProduct_div_form_select" name="" id="">
-                    <option value="">Type of Product</option>
+                    <option value="" disabled selected>Type of Product</option>
+					<option value="">Chemical</option>
+					<option value="">Lab Equipment</option>
+					<option value="">Glassware</option>
+					<option value="">Safety Equipment</option>
+					<option value="">Book</option>
+					<option value="">Biological Equipment</option>
                 </select>
                 <select class="addProduct_div_form_select" name="" id="">
-                    <option value="">Type of Chemical</option>
+                    <option value="" disabled selected>Subtype</option>
                 </select>
                 <input class="addProduct_div_form_input" type="text" placeholder="Quantity">
                 <select class="addProduct_div_form_select" name="" id="">
-                    <option value="">Unit of Measurement</option>
+                    <option value="" disabled selected>Unit of Measurement</option>
+					<option value="">Units</option>
+					<option value="">Kilograms</option>
+					<option value="">Grams</option>
+					<option value="">Miligrams</option>
+					<option value="">Gallons</option>
+					<option value="">Ounces</option>
+					<option value="">Liters</option>
+					<option value="">Millilliters</option>
                 </select>
+				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)">
                 <input class="addProduct_div_form_image" type="file" placeholder="Picture">
                 <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product">
             </form>
