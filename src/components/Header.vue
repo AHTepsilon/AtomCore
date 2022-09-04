@@ -47,12 +47,18 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 20px;
+		
+		.AClogo
+		{
+			margin-left: 3em;
+		}
 
         .header_buttons
         {
 
             display: flex;
             flex-direction: row;
+			margin-right: 4em;
 
             &_item
             {
@@ -63,6 +69,7 @@
                 border-radius: 50px;
                 align-items: center;
                 justify-content: center;
+				margin: 0.5em;
 
                 &:hover{
                     background: darken($color: $babyBlue, $amount: 5);
@@ -107,6 +114,7 @@
                 height: 20px;
                 list-style: none;
                 border-radius: 50px;
+				text-decoration: none;
 
                 margin: 20px;
 
@@ -122,6 +130,8 @@
         {
             display: flex;
             align-items: center;
+			
+			margin-right: 3em;
 
             &_button
             {
@@ -145,4 +155,9 @@
 
         }
     }
+	
+	body
+	{
+		margin: 0;
+	}
 </style>

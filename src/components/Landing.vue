@@ -1,16 +1,7 @@
 <template>
 
-<section>
-        <select name="Sort By" id="">
-            <option value="">Alphabetical Order</option>
-            <option value="">Lowest Price</option>
-            <option value="">Highest Price</option>
-        </select>
-        <select name="Sort By" id="">
-            <option value="">Chemicals</option>
-            <option value="">Lab Equipment</option>
-            <option value="">Glassware</option>
-        </select>
+	<section>
+		<h1>Chemistry Supplies for Schools and Students</h1>
     </section>
     
 </template>
