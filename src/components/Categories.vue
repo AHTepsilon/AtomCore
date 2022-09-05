@@ -7,21 +7,27 @@
 		
 		<div class="section_categories">
 			<div class="section_categories_item">
+				<img alt="Chemicals Icon" class="section_categories_item_image section_categories_item_image_chemical" src="\iconChemicals.png"/>
 				<h3 class="section_categories_item_title">Chemicals</h3>
 			</div>
 			<div class="section_categories_item">
+				<img alt="Lab Equipment Icon" class="section_categories_item_image section_categories_item_image_lab" src="\iconLab.png"/>
 				<h3 class="section_categories_item_title">Lab Equimpent</h3>
 			</div>
 			<div class="section_categories_item">
+				<img alt="Glassware Icon" class="section_categories_item_image section_categories_item_image_glassware" src="\iconGlassware.png"/>
 				<h3 class="section_categories_item_title">Glassware</h3>
 			</div>
 			<div class="section_categories_item">
+				<img alt="Safety Equipment Icon" class="section_categories_item_image section_categories_item_image_safety" src="\iconSafety.png"/>
 				<h3 class="section_categories_item_title">Safety Equipment</h3>
 			</div>
 			<div class="section_categories_item">
+				<img alt="Books Icon" class="section_categories_item_image section_categories_item_image_books" src="\iconBooks.png"/>
 				<h3 class="section_categories_item_title">Books</h3>
 			</div>
 			<div class="section_categories_item">
+				<img alt="Biological Equipment Icon" class="section_categories_item_image section_categories_item_image_bio" src="\iconBiological.png"/>
 				<h3 class="section_categories_item_title">Biological Equipment</h3>
 			</div>
 		</div>
@@ -73,7 +79,44 @@
 				
 				&_title
 				{
-
+					
+				}
+				
+				&_image
+				{
+					&_chemical
+					{
+						width: 4em;
+						margin-bottom: 1em;
+					}
+					&_lab
+					{
+						width: 5em;
+						margin-bottom: 1em;
+					}
+					&_glassware
+					{
+						width: 4em;
+						margin-top: 1em;
+						margin-bottom: 2em;
+					}
+					&_safety
+					{
+						width: 6em;
+						margin-top: 3em;
+						margin-bottom: 2em;
+					}
+					&_books
+					{
+						width: 6em;
+						margin-top: 3em;
+						margin-bottom: 2em;
+					}
+					&_bio
+					{
+						width: 3em;
+						margin-bottom: 1em;
+					}
 				}
 				
 				transition: transform .2s;
