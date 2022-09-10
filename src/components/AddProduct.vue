@@ -8,8 +8,8 @@
         <h2 class="form_title">Insert Data and Submit to Database</h2>
         <div class="addProduct_div">
             <form action="" class="addProduct_div_form">
-                <input class="addProduct_div_form_input" type="text" placeholder="Product Name">
-                <select class="addProduct_div_form_select" name="" id="">
+                <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="productName">
+                <select class="addProduct_div_form_select" name="" id="" v-model="productType">
                     <option value="" disabled selected>Type of Product</option>
 					<option value="">Chemical</option>
 					<option value="">Lab Equipment</option>
@@ -18,11 +18,11 @@
 					<option value="">Book</option>
 					<option value="">Biological Equipment</option>
                 </select>
-                <select class="addProduct_div_form_select" name="" id="">
+                <select class="addProduct_div_form_select" name="" id="" v-model="productSubtype">
                     <option value="" disabled selected>Subtype</option>
                 </select>
-                <input class="addProduct_div_form_input" type="text" placeholder="Quantity">
-                <select class="addProduct_div_form_select" name="" id="">
+                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity">
+                <select class="addProduct_div_form_select" name="" id="" v-model="productUnit">
                     <option value="" disabled selected>Unit of Measurement</option>
 					<option value="">Units</option>
 					<option value="">Kilograms</option>
@@ -33,16 +33,30 @@
 					<option value="">Liters</option>
 					<option value="">Millilliters</option>
                 </select>
-				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)">
-                <input class="addProduct_div_form_image" type="file" placeholder="Picture">
-                <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product">
+				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice">
+                <input class="addProduct_div_form_image" type="file" placeholder="Picture" >
+                <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product" v-model="productSubmit">
             </form>
         </div>
     </section>
 </template>
 
 <script>
-
+	export default {
+		data() {
+			return {
+			
+				productName: "",
+				productType: "",
+				productSubtype: "",
+				quantity: "",
+				productUnit: "",
+				productPrice: "",
+				productSubmit: ""
+			
+			}		
+		}
+	}
 </script>
 
 <style lang="scss">
