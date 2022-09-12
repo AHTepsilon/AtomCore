@@ -74,7 +74,7 @@
 				Price: this.productPrice
 			};
 			
-			console.log(newProduct);
+			localStorage.setItem('item', JSON.stringify(newProduct));
 			
 			}
 		
