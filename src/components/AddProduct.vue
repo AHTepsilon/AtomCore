@@ -7,22 +7,23 @@
     <section>
         <h2 class="form_title">Insert Data and Submit to Database</h2>
         <div class="addProduct_div">
-            <form action="" class="addProduct_div_form">
-                <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="productName">
-                <select class="addProduct_div_form_select" name="" id="" v-model="productType">
+            <form action="" class="addProduct_div_form" @submit.prevent = "productUploaded">
+                <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="productName" required>
+                <select class="addProduct_div_form_select" name="" id="" v-model="productType" required>
                     <option value="" disabled selected>Type of Product</option>
-					<option value="">Chemical</option>
-					<option value="">Lab Equipment</option>
-					<option value="">Glassware</option>
-					<option value="">Safety Equipment</option>
-					<option value="">Book</option>
-					<option value="">Biological Equipment</option>
+					<option value="chemical">Chemical</option>
+					<option value="labEquipment">Lab Equipment</option>
+					<option value="glassware">Glassware</option>
+					<option value="safetyEquipment">Safety Equipment</option>
+					<option value="book">Book</option>
+					<option value="biologicalEquipment">Biological Equipment</option>
                 </select>
-                <select class="addProduct_div_form_select" name="" id="" v-model="productSubtype">
+                <select class="addProduct_div_form_select" name="" id="" v-model="productSubtype" required>
                     <option value="" disabled selected>Subtype</option>
+					<option value="something">Something</option>
                 </select>
-                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity">
-                <select class="addProduct_div_form_select" name="" id="" v-model="productUnit">
+                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity" required>
+                <select class="addProduct_div_form_select" name="" id="" v-model="productUnit" required>
                     <option value="" disabled selected>Unit of Measurement</option>
 					<option value="">Units</option>
 					<option value="">Kilograms</option>
@@ -33,8 +34,8 @@
 					<option value="">Liters</option>
 					<option value="">Millilliters</option>
                 </select>
-				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice">
-                <input class="addProduct_div_form_image" type="file" placeholder="Picture" >
+				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice" required>
+                <input class="addProduct_div_form_image" type="file" placeholder="Picture" required>
                 <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product" v-model="productSubmit">
             </form>
         </div>
@@ -44,7 +45,7 @@
 <script>
 	export default {
 		data() {
-			return {
+			return { 
 			
 				productName: "",
 				productType: "",
@@ -55,6 +56,28 @@
 				productSubmit: ""
 			
 			}		
+		},
+		
+		methods: {
+		
+			productUploaded(){
+			
+			console.log("product data has been submited");
+			
+			let newProduct = {
+			
+				Name: this.productName,
+				Type: this.productType,
+				Subtype: this.productSubtype,
+				Quantity: this.quantity,
+				Unit: this.productUnit,
+				Price: this.productPrice
+			};
+			
+			console.log(newProduct);
+			
+			}
+		
 		}
 	}
 </script>
@@ -123,6 +146,8 @@
 				
 				background: $darkCyan;
 				border: none;
+				
+				color: #FFFFFF;
 				
 				margin-top: 30px;
 				
