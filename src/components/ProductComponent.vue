@@ -14,10 +14,15 @@
 
 import { RouterLink, RouterView } from 'vue-router'
 
-    export default{
+export default{
+  		components:{
+   	    	
+		},
+
         data(){
 
         },
+
         methods: {
             
         }
