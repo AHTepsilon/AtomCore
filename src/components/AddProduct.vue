@@ -25,14 +25,14 @@
                 <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity" required>
                 <select class="addProduct_div_form_select" name="" v-model="productUnit" required>
                     <option value="" disabled>Unit of Measurement</option>
-					<option value="">Units</option>
-					<option value="">Kilograms</option>
-					<option value="">Grams</option>
-					<option value="">Miligrams</option>
-					<option value="">Gallons</option>
-					<option value="">Ounces</option>
-					<option value="">Liters</option>
-					<option value="">Millilliters</option>
+					<option value="units">Units</option>
+					<option value="kilograms">Kilograms</option>
+					<option value="grams">Grams</option>
+					<option value="miligrams">Miligrams</option>
+					<option value="gallons">Gallons</option>
+					<option value="ounces">Ounces</option>
+					<option value="liters">Liters</option>
+					<option value="millilliters">Millilliters</option>
                 </select>
 				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice" required>
                 <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
