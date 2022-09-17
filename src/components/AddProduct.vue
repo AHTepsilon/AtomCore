@@ -36,7 +36,7 @@
                 </select>
 				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice" required>
                 <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
-                <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product" v-model="productSubmit">
+                <input class="addProduct_div_form_button" type="submit" value="Upload Product">
             </form>
         </div>
     </section>
@@ -54,12 +54,15 @@
 				productUnit: "",
 				productPrice: "",
 				productSubmit: "",
+				objectId: "",
 			}		
 		},
 		
 		methods: {
 		
 			productUploaded(){
+
+			this.objectId = Math.floor(Math.random() * (999999-100000) + 100000);
 			
 			console.log("product data has been submited");
 			
@@ -72,9 +75,10 @@
 				Unit: this.productUnit,
 				Price: this.productPrice,
 				Image: this.selectedFile,
+				id: this.objectId,
 			};
 			
-			localStorage.setItem('item', JSON.stringify(newProduct));
+			localStorage.setItem(newProduct.id, JSON.stringify(newProduct));
 			
 			},
 
@@ -84,7 +88,7 @@
 				reader.addEventListener("load", (ev)=>{
 					this.selectedFile = reader.result;
 
-					console.log(this.selectedFile);
+					//console.log(this.selectedFile);
 				});
 				reader.readAsDataURL(event.target.files[0]);
 			}
@@ -173,6 +177,50 @@
 			{
 				margin: 5px;
 				width: 30em;
+			}
+		}
+	}
+
+	@media all and (max-width: 414px){
+		.main_title
+		{
+			text-align: center;
+			font-size: 20px;
+		}
+		
+		.main_subtitle
+		{
+			text-align: center;
+			font-size: 10px;
+		}
+
+		.form_title{
+			text-align: center;
+			font-size: 20px;
+		}
+
+		.addProduct_div{
+			&_form{
+				
+				&_input{
+
+					width: 70%;
+
+				}
+
+				&_select{
+
+					width: 70%;
+
+				}
+
+				&_image{
+					width: 70%;
+				}
+
+				&_button{
+					width: 70%;
+				}
 			}
 		}
 	}

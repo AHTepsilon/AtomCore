@@ -2,12 +2,12 @@
         <header>
         
 		<RouterLink :to="{name: 'home'}">
-			<img alt="AtomCore logo" class="AClogo" src="\atomCoreLogo.png"/>
+			<img alt="AtomCore logo" id="AClogo" class="AClogo" src="\atomCoreLogo.png"/>
 		</RouterLink>
 		
         <ul class="header_buttons">
 			<RouterLink :to="{name: 'addProduct'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
-            <li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li>
+            <RouterLink :to="{name: 'shop'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li></RouterLink>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
             <li class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li>
         </ul>
@@ -62,6 +62,7 @@
 
             &_item
             {
+                display: flex;
                 background-color: $babyBlue;
                 width: 50px;
                 height: 50px;
@@ -160,4 +161,58 @@
 	{
 		margin: 0;
 	}
+
+    @media all and (max-width: 414px){
+
+        header{
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            padding: 0;
+
+            .AClogo{
+                
+                width: 60%;
+
+            }
+
+            .header_buttons{
+                
+                &_item{
+                    width: 3em;
+                    height: 3em;
+
+                    &_img{
+                    width: 2em;
+                    height: 2em;  
+                    }
+                }
+            }
+        }
+
+        nav{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-color: $headerColor;
+
+            .nav_buttons{
+                display: none;
+            }
+
+            .searchbox_div{
+
+
+                &_input{
+
+                    width: 300px;
+                    background-color: $babyBlue;
+
+                }
+            }
+        }
+    }
 </style>

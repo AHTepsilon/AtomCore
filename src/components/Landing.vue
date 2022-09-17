@@ -6,7 +6,7 @@
 			<p class="section_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
-			<button>Sign Up Now</button>
+			<button class="section_text_button">Sign Up Now</button>
 		</div>
     </section>
 
@@ -33,7 +33,41 @@
 		
 		.section_text
 		{
+			display: flex;
+			flex-direction: column;
 			margin-right: 30em;
+
+			&_button{
+				width: 120px;
+			}
 		}
+	}
+
+	@media all and (max-width: 414px){
+
+	.headimage_section
+	{
+		margin: 4em;
+		.section_text
+		{
+			align-items: center;
+			justify-content: center;	
+			margin-right: 1em;
+	
+			&_title{
+				text-align: center;
+			}
+
+			&_paragraph{
+				text-align: center;
+			}
+
+			&_button{
+				width: 120px;
+				height: 60px;
+			}
+		}
+	}
+
 	}
 </style>
