@@ -1,6 +1,6 @@
 <template>
 
-	<section>
+	<section class="headimage_section">
 		<div class="section_text">
 			<h1 class="section_text_title">Chemistry Supplies for Schools and Students</h1>
 			<p class="section_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -9,15 +9,25 @@
 			<button>Sign Up Now</button>
 		</div>
     </section>
+
+	<section class="products_section">
+		<ProductComponent />
+	</section>
     
 </template>
 
 <script>
+	import ProductComponent from './ProductComponent.vue'
 
+	export default{
+  		components:{
+   	    	ProductComponent
+		}
+	}
 </script>
 
 <style lang="scss">
-	section
+	.headimage_section
 	{
 		margin: 4em;
 		

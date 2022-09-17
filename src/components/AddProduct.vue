@@ -23,8 +23,8 @@
 					<option value="something">Something</option>
                 </select>
                 <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity" required>
-                <select class="addProduct_div_form_select" name="" id="" v-model="productUnit" required>
-                    <option value="" disabled selected>Unit of Measurement</option>
+                <select class="addProduct_div_form_select" name="" v-model="productUnit" required>
+                    <option value="" disabled>Unit of Measurement</option>
 					<option value="">Units</option>
 					<option value="">Kilograms</option>
 					<option value="">Grams</option>
@@ -35,7 +35,7 @@
 					<option value="">Millilliters</option>
                 </select>
 				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice" required>
-                <input class="addProduct_div_form_image" type="file" placeholder="Picture" required>
+                <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
                 <input class="addProduct_div_form_button" type="submit" placeholder="Upload Product" v-model="productSubmit">
             </form>
         </div>
@@ -53,8 +53,7 @@
 				quantity: "",
 				productUnit: "",
 				productPrice: "",
-				productSubmit: ""
-			
+				productSubmit: "",
 			}		
 		},
 		
@@ -71,11 +70,23 @@
 				Subtype: this.productSubtype,
 				Quantity: this.quantity,
 				Unit: this.productUnit,
-				Price: this.productPrice
+				Price: this.productPrice,
+				Image: this.selectedFile,
 			};
 			
 			localStorage.setItem('item', JSON.stringify(newProduct));
 			
+			},
+
+			onFileSelected(event){
+				const reader = new FileReader();
+
+				reader.addEventListener("load", (ev)=>{
+					this.selectedFile = reader.result;
+
+					console.log(this.selectedFile);
+				});
+				reader.readAsDataURL(event.target.files[0]);
 			}
 		
 		}
