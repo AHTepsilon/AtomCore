@@ -18,10 +18,6 @@
 					<option value="book">Book</option>
 					<option value="biologicalEquipment">Biological Equipment</option>
                 </select>
-                <select class="addProduct_div_form_select" name="" id="" v-model="productSubtype" required>
-                    <option value="" disabled selected>Subtype</option>
-					<option value="something">Something</option>
-                </select>
                 <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity" required>
                 <select class="addProduct_div_form_select" name="" v-model="productUnit" required>
                     <option value="" disabled>Unit of Measurement</option>
@@ -70,7 +66,6 @@
 			
 				Name: this.productName,
 				Type: this.productType,
-				Subtype: this.productSubtype,
 				Quantity: this.quantity,
 				Unit: this.productUnit,
 				Price: this.productPrice,

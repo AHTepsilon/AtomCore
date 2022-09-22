@@ -24,7 +24,11 @@ export default{
         },
 
         methods: {
-            
+            getItem(){
+                for(let i = 0; i < localStorage.length; i++){
+                    localStorage.getItem(localStorage.key(i));
+                }
+            }
         }
     }
 </script>
