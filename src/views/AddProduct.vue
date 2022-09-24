@@ -58,7 +58,7 @@
 		
 			productUploaded(){
 
-			this.objectId = Math.floor(Math.random() * (999999-100000) + 100000);
+			this.objectId = String(Math.floor(Math.random() * (999999-100000) + 100000));
 			
 			console.log("product data has been submited");
 			

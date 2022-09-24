@@ -5,6 +5,7 @@ import Categories from '../views/Categories.vue'
 import AddProduct from '../views/AddProduct.vue'
 import Product from '../views/Product.vue'
 import ProductShowcase from '../views/ProductShowcase.vue'
+import ProductDetail from '../views/ProductDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,7 +38,13 @@ const router = createRouter({
 		path:'/',
 		name: 'shop',
 		component: ProductShowcase
-	}
+	},
+
+	{
+		path: '/product/:id',
+		name: 'detail',
+		component: ProductDetail
+	},
   ]
 })
 

@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 export const useProductsStore = defineStore("products", {
   state: () => ({
       products: [],
-      localStorageArr: [],
   }),
 
   getters: {
@@ -15,7 +14,6 @@ export const useProductsStore = defineStore("products", {
 
       this.list = [];
       this.products = [];
-      this.localStorageArr = [];
 
       let itemValue;
       let object;
@@ -36,6 +34,11 @@ export const useProductsStore = defineStore("products", {
           this.list.push(this.item);
       }
 
+  },
+
+  getProductById(id){
+      let filteredProducts = this.products.filter((product) => id === product.id)
+      return filteredProducts ? filteredProducts[0] : null;
   }
   }
 })
