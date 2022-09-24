@@ -1,27 +1,41 @@
 <template>
-    <button @click="displayItem">Load Items</button>
-        <ul id="product-list">
-            <li v-for="(item) in list">
-                {{ item }}
-            </li>
-        </ul>
+        <div>
+            <RouterLink
+                v-for="product in productsGet"
+                :key="product.Name"
+                :to="`/product/${product.id}`">  
+
+                <div v-for="(product) in productsGet">
+                    <p>{{ product.Name }}</p>
+                    <p>{{ product.Price }}.00$</p>
+                </div>
+            </RouterLink>
+            </div>
 
 </template>
 
 <script>
     import ProductComponent from '../components/ProductComponent.vue'
+    import { createPinia, mapStores } from "pinia";
+    import { useProductsStore } from '../stores/productStore';
 
     export default{
-        name: "App",
-        data(){
-            return{
-                list: [],
-                item: "",
-            }   
+        computed: {
+            ...mapStores(useProductsStore),
+            productsGet(){
+                return this.productsStore.getProducts;
+            }
         },
 
-        methods: {
+        mounted(){
+            this.productsStore.displayItem();
+        }
+        
+        /*methods: {
             getItem(){
+
+                this.list = [];
+
                 let itemValue;
                 let object;
 
@@ -36,20 +50,14 @@
 
 
                 for(let j = 0; j < itemArr.length; j++){
-                    console.log(itemArr[j]);
+                    console.log();
+                    
+                    this.item = itemArr[j];
+                    this.list.push(this.item);
                 }
 
-                return itemArr;
             },
-
-            displayItem(){
-
-                this.getItem();
-                
-                const product = document.createElement("a");
-                product.className = "product";
-            }
-        }
+        },*/
     }
 </script>
 
