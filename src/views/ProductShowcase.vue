@@ -62,6 +62,26 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+
+.product-showcase-div{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &-router{
+
+        margin: 20px;
+
+        &-container{
+
+            &-img{
+                width: 10em;
+            }
+        }
+    }
+
+}
 
 </style>
