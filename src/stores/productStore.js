@@ -16,7 +16,7 @@ export const useProductsStore = defineStore("products", {
       this.list = [];
       this.products = [];
       this.localStorageArr = [];
-      
+
       let itemValue;
       let object;
 

@@ -1,13 +1,14 @@
 <template>
-        <div>
-            <RouterLink
+        <div class="product-showcase-div">
+            <RouterLink class="product-showcase-div-router"
                 v-for="product in productsGet"
                 :key="product.Name"
                 :to="`/product/${product.id}`">  
 
-                <div v-for="(product) in productsGet">
-                    <p>{{ product.Name }}</p>
-                    <p>{{ product.Price }}.00$</p>
+                <div class="product-showcase-div-router-container">
+                    <img class="product-showcase-div-router-container-img" :src="product.Image"/>
+                    <p class="product-showcase-div-router-container-title">{{ product.Name }}</p>
+                    <p class="product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
                 </div>
             </RouterLink>
             </div>
