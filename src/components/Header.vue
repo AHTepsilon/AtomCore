@@ -25,6 +25,12 @@
             <input type="text" placeholder="Search" class="searchbox_div_input">
         </div> 
     </nav>
+
+    <transition name="modalDisplay">
+        <div class="modalOverlay" v-if="modalActive">
+
+        </div>
+    </transition>
 </template>
 
 <script>

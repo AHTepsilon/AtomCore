@@ -1,4 +1,12 @@
 <template>
+        <div class="product-showcase-filt">
+            <select class="product-showcase-filt-select-filter">
+                <option value="" disabled selected>Filter by</option>
+            </select>
+            <select class="product-showcase-filt-select-sort">
+                <option value="" disabled selected>Sort by</option>
+            </select>
+        </div>
         <div class="product-showcase-div">
             <RouterLink class="product-showcase-div-router"
                 v-for="product in productsGet"

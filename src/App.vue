@@ -22,6 +22,7 @@ export default {
 <template>
 	<Header />
   <RouterView />
+
 </template>
 
 <style lang = "scss">
