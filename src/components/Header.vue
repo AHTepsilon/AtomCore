@@ -8,16 +8,16 @@
         <ul class="header_buttons">
 			<RouterLink :to="{name: 'addProduct'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
             <RouterLink :to="{name: 'shop'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li></RouterLink>
-            <li class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
-            <li class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li>
+            <li @click="showModal = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
+            <li @click="showModal = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li>
         </ul>
     </header>
     <nav>
         <ul class="nav_buttons">
             <RouterLink :to="{name: 'categories'}"><li class="nav_buttons_item">Categories</li></RouterLink>
-            <li class="nav_buttons_item">Resources</li>
-            <li class="nav_buttons_item">Subjects</li>
-            <li class="nav_buttons_item">Shop by Bulk</li>
+            <li @click="showModal = true" class="nav_buttons_item">Resources</li>
+            <li @click="showModal = true" class="nav_buttons_item">Subjects</li>
+            <li @click="showModal = true" class="nav_buttons_item">Shop by Bulk</li>
         </ul>
 
         <div class="searchbox_div">
@@ -25,17 +25,30 @@
             <input type="text" placeholder="Search" class="searchbox_div_input">
         </div> 
     </nav>
-
-    <transition name="modalDisplay">
-        <div class="modalOverlay" v-if="modalActive">
-
-        </div>
-    </transition>
+    <NotAvailableModal v-if="showModal" @close="toggleModal" />
 </template>
 
 <script>
-
 	import {RouterLink} from "vue-router";
+    import NotAvailableModal from './NotAvailableModal.vue'
+
+    export default {
+        data(){
+            return{
+                showModal: false
+            }
+        },
+
+        methods: {
+            toggleModal(){
+                this.showModal = !this.showModal
+            }
+        },
+
+        components: {
+            NotAvailableModal
+        }
+}
 
 </script>
 
@@ -43,6 +56,30 @@
     $headerColor: #FFFFFF;
     $babyBlue: #DAE4FF;
     $darkCyan: #A6BFFF;
+
+    modalDisplay-enter{
+        
+    }
+
+    .modalOverlay{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        .modalContainer{
+            background-color: white;
+
+            width: 800px;
+            padding: 50px;
+            background-color: white;
+        }
+    }
 
     header
     {

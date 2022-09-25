@@ -1,33 +1,46 @@
 <template>
     <transition name="modalDisplay">
-        <div class="modalOverlay" v-if="modalActive">
-
+        <div class="modalOverlay">
+            <div class="modalContainer">
+                <h2>Page not available</h2>
+                <button @click="closeModal">Close</button>
+            </div>
         </div>
     </transition> 
 </template>
 
 <script>
     export default {
-        data(){
-            return{
-                
+        methods: {
+            closeModal(){
+                this.$emit('close')
             }
         }
     }
 </script>
 
-<style>
+<style lang="scss">
     modalDisplay-enter{
         
     }
 
     .modalOverlay{
-        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
         top: 0;
-        left: 0;
-        right: 0;
         bottom: 0;
-        z-index: 100;
         background-color: rgba(0, 0, 0, 0.5);
+
+        .modalContainer{
+            background-color: white;
+
+            width: 800px;
+            padding: 50px;
+            background-color: white;
+        }
     }
 </style>

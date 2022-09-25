@@ -6,6 +6,7 @@ import Categories from './views/Categories.vue'
 import AddProduct from './views/AddProduct.vue'
 import Product from './views/Product.vue'
 import ProductShowcase from './views/ProductShowcase.vue'
+import NotAvailableModal from './components/NotAvailableModal.vue'
 
 export default {
   components: {
@@ -14,8 +15,16 @@ export default {
     Categories,
     AddProduct,
     Product,
-    ProductShowcase
+    ProductShowcase,
+    NotAvailableModal
+  },
+
+  data(){
+    return{
+      
+    }
   }
+
 }
 </script>
 
