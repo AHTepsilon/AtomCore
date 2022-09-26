@@ -1,6 +1,6 @@
 <template>
         <div class="product-showcase-filt">
-            <select class="product-showcase-filt-select-type" @change="filterBy($event,'A')">
+            <select class="product-showcase-filt-select product-showcase-filt-select-type" @change="filterBy($event,'A')">
                 <option value="noFilter" disabled selected>Type of Products</option>
                 <option value="noFilter">Any Type</option>
                 <option value="0">Glassware</option>
@@ -10,21 +10,21 @@
                 <option value="4">Books</option>
                 <option value="5">Biological Equipment</option>
             </select>
-            <select class="product-showcase-filt-select-type" @change="filterBy($event, 'B')">
+            <select class="product-showcase-filt-select product-showcase-filt-select-type" @change="filterBy($event, 'B')">
                 <option value="noFilter" disabled selected>Price</option>
                 <option value="noFilter">Any Price</option>
                 <option value="0">Lower than 5$</option>
                 <option value="1">Lower than 10$</option>
                 <option value="2">Lower than 15$</option>
             </select>
-            <select class="product-showcase-filt-select-type" @change="filterBy($event, 'C')">
+            <select class="product-showcase-filt-select product-showcase-filt-select-type" @change="filterBy($event, 'C')">
                 <option value="noFilter" disabled selected>State</option>
                 <option value="noFilter">Any State</option>
                 <option value="0">Solids</option>
                 <option value="1">Liquids</option>
                 <option value="2">Non-Chemicals</option>
             </select>
-            <select class="product-showcase-filt-select-sort" @change="sortBy($event)">
+            <select class="product-showcase-filt-select product-showcase-filt-select-sort" @change="sortBy($event)">
                 <option value="" disabled selected>Sort by</option>
                 <option value="0">A to Z</option>
                 <option value="1">Z to A</option>
@@ -40,9 +40,9 @@
                 :to="`/product/${product.id}`">  
 
                 <div class="product-showcase-div-router-container">
-                    <img class="product-showcase-div-router-container-img" :src="product.Image"/>
-                    <p class="product-showcase-div-router-container-title">{{ product.Name }}</p>
-                    <p class="product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
+                    <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.Image"/>
+                    <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-title">{{ product.Name }}</p>
+                    <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
                 </div>
             </RouterLink>
             </div>
@@ -111,11 +111,36 @@
 
 <style lang="scss">
 
+$headerColor: #FFFFFF;
+$babyBlue: #DAE4FF;
+$darkCyan: #A6BFFF;
+
+.product-showcase-filt{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        align-items: center;
+        justify-content: center;
+
+        &-select{
+            height: 2em;
+            width: 10%;
+            margin: 1em;
+
+            background-color: $babyBlue;
+            border-radius: 10px;
+        }
+    }
+
 .product-showcase-div{
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
 
     &-router{
 
@@ -123,13 +148,68 @@
 
         &-container{
 
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+
+            background-color: $babyBlue;
+            padding: 0.5em;
+        
+            &-item{
+                margin: 0.2em;
+
+                &-text{
+                    width: 10em;
+                    text-align: center;
+
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    font-size: 12px;
+                }
+            }
+
             &-img{
                 width: 10em;
                 height: 10em;
             }
+
+            &:hover{
+                background: darken($color: $babyBlue, $amount: 5);
+                }
         }
     }
 
+}
+
+@media all and (max-width: 414px){
+    .product-showcase-filt{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+
+        &-select{
+            height: 4em;
+            width: 40%;
+            margin: 0.5em 0;
+        }
+    }
+
+    .product-showcase-div{
+        align-items: center;
+        flex-direction: column;
+
+        &-router{
+            &-container{
+
+                &-img{
+                    width: 8em;
+                    height: 8em;
+                }
+            }
+        }
+    }
 }
 
 </style>

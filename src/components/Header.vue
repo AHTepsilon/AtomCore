@@ -248,6 +248,7 @@
 
             .searchbox_div{
 
+                display: none;
 
                 &_input{
 
