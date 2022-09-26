@@ -1,12 +1,28 @@
 <template>
         <div class="product-showcase-filt">
-            <select class="product-showcase-filt-select-type" @change="filterBy($event)">
-                <option value="" disabled selected>Filter By</option>
-                <option value="noFilter">Any</option>
+            <select class="product-showcase-filt-select-type" @change="filterBy($event,'A')">
+                <option value="noFilter" disabled selected>Type of Products</option>
+                <option value="noFilter">Any Type</option>
                 <option value="0">Glassware</option>
-                <option value="1">Don't Show Chemicals</option>
-                <option value="2">Liquids</option>
-                <option value="3">Lower than 10$</option>
+                <option value="1">Chemicals</option>
+                <option value="2">Lab Equipment</option>
+                <option value="3">Safety Equipment</option>
+                <option value="4">Books</option>
+                <option value="5">Biological Equipment</option>
+            </select>
+            <select class="product-showcase-filt-select-type" @change="filterBy($event, 'B')">
+                <option value="noFilter" disabled selected>Price</option>
+                <option value="noFilter">Any Price</option>
+                <option value="0">Lower than 5$</option>
+                <option value="1">Lower than 10$</option>
+                <option value="2">Lower than 15$</option>
+            </select>
+            <select class="product-showcase-filt-select-type" @change="filterBy($event, 'C')">
+                <option value="noFilter" disabled selected>State</option>
+                <option value="noFilter">Any State</option>
+                <option value="0">Solids</option>
+                <option value="1">Liquids</option>
+                <option value="2">Non-Chemicals</option>
             </select>
             <select class="product-showcase-filt-select-sort" @change="sortBy($event)">
                 <option value="" disabled selected>Sort by</option>
@@ -56,10 +72,10 @@
                 this.productsStore.sortProducts(selection);
             },
 
-            filterBy(event){
+            filterBy(event, caller){
                 let selected = event.target.value;
                 console.log(selected);
-                this.productsStore.filterProducts(selected);
+                this.productsStore.filterProducts(selected, caller);
             }
         }
         

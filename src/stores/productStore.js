@@ -225,27 +225,78 @@ export const useProductsStore = defineStore("products", {
     }
   },
 
-  filterProducts(key){
-    switch(key){
-        case "noFilter":
-            this.displayItem();
-            break;
-        case "0":
-            this.displayItem();
-            this.products = this.products.filter((item) => item.Type === "glassware");
-            break;
-        case "1":
-            this.displayItem();
-            this.products = this.products.filter((item) => item.Type !== "chemical");
-            break;
-        case "2":
-            this.displayItem();
-            this.products = this.products.filter((item) => item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
-            break;
-        case "3":
-            this.displayItem();
-            this.products = this.products.filter((item) => item.Price < 10);
-            break;
+  filterProducts(key, filterDo){
+
+    if(filterDo == "A"){
+        switch(key){
+            case "noFilter":
+                this.displayItem();
+                break;
+            case "0":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "glassware");
+                break;
+            case "1":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "chemical");
+                break;
+            case "2":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "lab equipment");
+                break;
+            case "3":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "safety equipment");
+                break;
+            case "4":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "book");
+                break;
+            case "5":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "biological equipment");
+                break;
+        }
+    }
+
+    if(filterDo == "B"){
+        switch(key){
+            case "noFilter":
+                this.displayItem();
+                break;
+            case "0":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Price < 5);
+                break;
+            case "1":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Price < 10);
+                break;
+            case "2":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Price < 15);
+                break;
+        }
+    }
+
+    if(filterDo == "C"){
+        switch(key){
+            case "noFilter":
+                this.displayItem();
+                break;
+            case "0":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "chemical" && item.Unit === "grams" || item.Unit === "miligrams" || item.Unit === "ounces" || item.Unit === "kilograms");
+                break;
+            case "1":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type === "chemical" && item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
+                break;
+            case "2":
+                this.displayItem();
+                this.products = this.products.filter((item) => item.Type !== "chemical");
+                break;
+        }
     }
   }
   }
