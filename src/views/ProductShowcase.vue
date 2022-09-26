@@ -1,7 +1,12 @@
 <template>
         <div class="product-showcase-filt">
-            <select class="product-showcase-filt-select-filter">
-                <option value="" disabled selected>Filter by</option>
+            <select class="product-showcase-filt-select-type" @change="filterBy($event)">
+                <option value="" disabled selected>Filter By</option>
+                <option value="noFilter">Any</option>
+                <option value="0">Glassware</option>
+                <option value="1">Don't Show Chemicals</option>
+                <option value="2">Liquids</option>
+                <option value="3">Lower than 10$</option>
             </select>
             <select class="product-showcase-filt-select-sort" @change="sortBy($event)">
                 <option value="" disabled selected>Sort by</option>
@@ -49,6 +54,12 @@
             sortBy(event){
                 let selection = event.target.value;
                 this.productsStore.sortProducts(selection);
+            },
+
+            filterBy(event){
+                let selected = event.target.value;
+                console.log(selected);
+                this.productsStore.filterProducts(selected);
             }
         }
         

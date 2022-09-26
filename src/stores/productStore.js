@@ -223,6 +223,30 @@ export const useProductsStore = defineStore("products", {
             break;       
 
     }
+  },
+
+  filterProducts(key){
+    switch(key){
+        case "noFilter":
+            this.displayItem();
+            break;
+        case "0":
+            this.displayItem();
+            this.products = this.products.filter((item) => item.Type === "glassware");
+            break;
+        case "1":
+            this.displayItem();
+            this.products = this.products.filter((item) => item.Type !== "chemical");
+            break;
+        case "2":
+            this.displayItem();
+            this.products = this.products.filter((item) => item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
+            break;
+        case "3":
+            this.displayItem();
+            this.products = this.products.filter((item) => item.Price < 10);
+            break;
+    }
   }
   }
 })
