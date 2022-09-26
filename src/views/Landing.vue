@@ -9,11 +9,6 @@
 			<button class="section_text_button" v-on:click="printLocalStorage">Sign Up Now</button>
 		</div>
     </section>
-
-	<section class="products_section">
-		<ProductComponent />
-	</section>
-    
 </template>
 
 <script>
@@ -38,6 +33,7 @@
 	.headimage_section
 	{
 		margin: 4em;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		
 		.section_text
 		{

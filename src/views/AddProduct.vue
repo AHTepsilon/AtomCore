@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="section-text">
         <h1 class="main_title">Add Product</h1>
         <p class="main_subtitle">ONLY FOR ADMINS - Add products to the database.</p>
     </section>
@@ -94,6 +94,10 @@
 
 <style lang="scss">
 
+	.section-text{
+		margin: 4em;
+	}
+
 	.main_title
 	{
 		font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -106,12 +110,20 @@
 		font-size: 12px;
 	}
 
+	.form_title
+	{
+		align-items: center;
+		text-align: center;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		margin: 2em;
+	}
+		
+
 	.addProduct_div
 	{
-	
+
 		$babyBlue: #DAE4FF;
 		$darkCyan: #A6BFFF;
-		
 		&_form
 		{
 			justify-content: center;

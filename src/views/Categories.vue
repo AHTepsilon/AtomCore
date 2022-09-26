@@ -47,7 +47,8 @@
 	{
 		.section_text
 		{
-			
+			margin: 4em;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
 		}
 		
 		.section_categories
@@ -59,6 +60,7 @@
 			
 			align-items: center;
 			justify-content: center;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			
 			&_item
 			{
@@ -66,7 +68,7 @@
 				height: 200px;
 				
 				background: $babyBlue;
-				margin: 5em;
+				margin: 2em;
 				
 				align-items: center;
 				justify-content: center;
