@@ -3,8 +3,13 @@
             <select class="product-showcase-filt-select-filter">
                 <option value="" disabled selected>Filter by</option>
             </select>
-            <select class="product-showcase-filt-select-sort">
+            <select class="product-showcase-filt-select-sort" @change="sortBy($event)">
                 <option value="" disabled selected>Sort by</option>
+                <option value="0">A to Z</option>
+                <option value="1">Z to A</option>
+                <option value="2">Lowest Price</option>
+                <option value="3">Highest Price</option>
+                <option value="4">Type of Product</option>
             </select>
         </div>
         <div class="product-showcase-div">
@@ -38,6 +43,13 @@
 
         mounted(){
             this.productsStore.displayItem();
+        },
+
+        methods:{
+            sortBy(event){
+                let selection = event.target.value;
+                this.productsStore.sortProducts(selection);
+            }
         }
         
         /*methods: {
@@ -86,6 +98,7 @@
 
             &-img{
                 width: 10em;
+                height: 10em;
             }
         }
     }

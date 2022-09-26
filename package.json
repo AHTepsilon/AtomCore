@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "pinia": "^2.0.22",
+    "underscore": "^1.13.6",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },
