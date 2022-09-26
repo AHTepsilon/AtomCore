@@ -8,6 +8,7 @@
             <h3 class="section_area_div_text section_area_div_amount">{{ current.Quantity }} {{ current.Unit }}</h3>
             <h3 class="section_area_div_text section_area_div_id">Product ID: {{$route.params.id}}</h3>
         </div>
+        <button class="addcart-button">Add to Cart</button>
     </section>
 </template>
 
@@ -40,14 +41,36 @@ import { useProductsStore } from '../stores/productStore';
 
     .section_area{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+
+        align-items: center;
+        text-align: center;
+
+        margin-top: 5em;
 
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+        .product_div_image{
+            width: 12em;
+        }
 
         &_div{
 
             &_text{
                 
+            }
+        }
+
+        .addcart-button{
+            width: 15em;
+            height: 3em;
+
+            border: none;
+            background-color: $babyBlue;
+
+            &:hover{
+                background: darken($color: $babyBlue, $amount: 5);
+                cursor: pointer;
             }
         }
     }
