@@ -1,14 +1,34 @@
 <template>
     <form>
-        <input type="email" placeholder="email">
-        <input type="password" placeholder="password">
-        <button @click="sign_in">Submit</button>
+        <input type="email" placeholder="email" v-model="email">
+        <input type="password" placeholder="password" v-model="password">
+        <button @click.prevent="signIn">Submit</button>
     </form>
 </template>
 
 <script>
+import {useAuthenticationStore} from '../stores/authentication'
+import { createPinia, mapStores } from "pinia";
 export default {
 
+    data(){
+        return{
+            email: '',
+            password: ''
+        }
+    },
+    methods: {
+        signIn(){
+            console.log(this.email, this.password)
+            this.authenticationStore.SignIn(this.email, this.password)
+        }
+    },
+    computed: {
+        ...mapStores(useAuthenticationStore)
+    },
+    mounted(){
+        console.log(this.authenticationStore)
+    }
 }
 </script>
 
