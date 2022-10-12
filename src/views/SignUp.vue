@@ -2,9 +2,10 @@
     <form>
         <input type="email" placeholder="email" v-model="email">
         <input type="password" placeholder="password" v-model="password">
-        <button @click.prevent="signIn">Submit</button>
+        <input type="password" placeholder="Confirm Password" v-model="passwordConf">
+        <button @click.prevent="signUp">Sign Up</button>
 
-        <RouterLink :to="{name: 'register'}">Don't have a user? Sign up now!</RouterLink>
+        <RouterLink :to="{name: 'login'}">Already have a user? Log in now!</RouterLink>
     </form>
 </template>
 
@@ -16,13 +17,20 @@ export default {
     data(){
         return{
             email: '',
-            password: ''
+            password: '',
+            passwordConf: '',
         }
     },
     methods: {
-        signIn(){
+        signUp(){
             console.log(this.email, this.password)
-            this.authenticationStore.SignIn(this.email, this.password)
+
+            if(this.password === this.passwordConf){
+                this.authenticationStore.SignUp(this.email, this.password)
+            }
+            else{
+                alert("Passwords do not match, try again")
+            }
         }
     },
     computed: {
