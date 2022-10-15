@@ -52,10 +52,12 @@ export const useAuthenticationStore = defineStore("authentication", {
         });
     },
 
-    logOut(){
+    signOut(){
         signOut(auth).then(()=>{
             console.log("Logged out");
             alert("Logged out");
+        }).catch((error) => {
+            console.log(error);
         });
     },
 

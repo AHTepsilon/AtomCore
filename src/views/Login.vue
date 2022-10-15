@@ -5,6 +5,7 @@
         <button @click.prevent="signIn">Submit</button>
 
         <RouterLink :to="{name: 'register'}">Don't have a user? Sign up now!</RouterLink>
+        <button @click="logOut">Log Out</button>
     </form>
 </template>
 
@@ -23,7 +24,11 @@ export default {
         signIn(){
             console.log(this.email, this.password)
             this.authenticationStore.SignIn(this.email, this.password)
-        }
+        },
+
+        logOut(){
+            this.authenticationStore.signOut()
+        } 
     },
     computed: {
         ...mapStores(useAuthenticationStore)
