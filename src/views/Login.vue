@@ -28,7 +28,7 @@ export default {
 
         logOut(){
             this.authenticationStore.signOut()
-        } 
+        },
     },
     computed: {
         ...mapStores(useAuthenticationStore)

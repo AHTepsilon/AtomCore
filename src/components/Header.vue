@@ -31,6 +31,8 @@
 <script>
 	import {RouterLink} from "vue-router";
     import NotAvailableModal from './NotAvailableModal.vue'
+    import {useAuthenticationStore} from '../stores/authentication'
+    import { createPinia, mapStores } from "pinia";
 
     export default {
         data(){
@@ -42,11 +44,23 @@
         methods: {
             toggleModal(){
                 this.showModal = !this.showModal
+            },
+
+            validateUser(){
+                let userHasLoggedIn = this.authenticationStore.validate()
             }
         },
 
+        computed: {
+            ...mapStores(useAuthenticationStore)
+        }, 
+
         components: {
             NotAvailableModal
+        },
+
+        mounted(){
+            this.validateUser()
         }
 }
 
