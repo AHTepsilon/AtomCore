@@ -34,7 +34,7 @@ export default {
         ...mapStores(useAuthenticationStore)
     },
     mounted(){
-        console.log(this.authenticationStore)
+        console.log(this.authenticationStore.validate())
     }
 }
 </script>

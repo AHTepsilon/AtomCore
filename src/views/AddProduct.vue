@@ -8,8 +8,8 @@
         <h2 class="form_title">Insert Data and Submit to Database</h2>
         <div class="addProduct_div">
             <form action="" class="addProduct_div_form" @submit.prevent = "productUploaded">
-                <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="productName" required>
-                <select class="addProduct_div_form_select" name="" id="" v-model="productType" required>
+                <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="objectData.productName" required>
+                <select class="addProduct_div_form_select" name="" id="" v-model="objectData.productType" required>
                     <option value="" disabled selected>Type of Product</option>
 					<option value="chemical">Chemical</option>
 					<option value="labEquipment">Lab Equipment</option>
@@ -18,8 +18,8 @@
 					<option value="book">Book</option>
 					<option value="biologicalEquipment">Biological Equipment</option>
                 </select>
-                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="quantity" required>
-                <select class="addProduct_div_form_select" name="" v-model="productUnit" required>
+                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="objectData.quantity" required>
+                <select class="addProduct_div_form_select" name="" v-model="objectData.productUnit" required>
                     <option value="" disabled>Unit of Measurement</option>
 					<option value="units">Units</option>
 					<option value="kilograms">Kilograms</option>
@@ -30,7 +30,7 @@
 					<option value="liters">Liters</option>
 					<option value="millilliters">Millilliters</option>
                 </select>
-				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="productPrice" required>
+				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="objectData.productPrice" required>
                 <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
                 <input class="addProduct_div_form_button" type="submit" value="Upload Product">
             </form>
@@ -39,42 +39,34 @@
 </template>
 
 <script>
+import { mapStores } from 'pinia';
+import { useProductsStore } from '../stores/productStore';
+
 	export default {
 		data() {
 			return { 
-			
-				productName: "",
-				productType: "",
-				productSubtype: "",
-				quantity: "",
-				productUnit: "",
-				productPrice: "",
-				productSubmit: "",
-				objectId: "",
+				objectData: 
+				{
+					productName: "",
+					productType: "",
+					quantity: "",
+					productUnit: "",
+					productPrice: "",
+					productSubmit: "",
+					objectId: "",
+				}
 			}		
 		},
+
+		computed: {
+            ...mapStores(useProductsStore)
+        },
 		
 		methods: {
 		
 			productUploaded(){
 
-			this.objectId = String(Math.floor(Math.random() * (999999-100000) + 100000));
-			
-			console.log("product data has been submited");
-			
-			let newProduct = {
-			
-				Name: this.productName,
-				Type: this.productType,
-				Quantity: this.quantity,
-				Unit: this.productUnit,
-				Price: this.productPrice,
-				Image: this.selectedFile,
-				id: this.objectId,
-			};
-			
-			localStorage.setItem(newProduct.id, JSON.stringify(newProduct));
-			
+			this.productsStore.uploadProduct(this.objectData);
 			},
 
 			onFileSelected(event){

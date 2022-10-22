@@ -8,17 +8,18 @@
             <h3 class="section_area_div_text section_area_div_amount">{{ current.Quantity }} {{ current.Unit }}</h3>
             <h3 class="section_area_div_text section_area_div_id">Product ID: {{$route.params.id}}</h3>
         </div>
-        <button class="addcart-button">Add to Cart</button>
+        <button class="addcart-button" @click="addToCart">Add to Cart</button>
     </section>
 </template>
 
 <script>
 import { mapStores } from 'pinia';
 import { useProductsStore } from '../stores/productStore';
+import { useAuthenticationStore } from '../stores/authentication';
 
     export default {
         computed: {
-            ...mapStores(useProductsStore),
+            ...mapStores(useProductsStore, useAuthenticationStore),
             
         },
 
@@ -28,7 +29,13 @@ import { useProductsStore } from '../stores/productStore';
 
         mounted(){
             this.current = this.productsStore.getProductById(this.$route.params.id);
-            console.log(this.current);
+            this.authenticationStore.validate()
+        },
+
+        methods: {
+            addToCart(){
+                this.productsStore.addProductToCart(this.authenticationStore.validate(), this.current);
+            }
         }
     }
 </script>

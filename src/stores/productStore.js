@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
+import { auth, db } from '../firebase/firebase';
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
@@ -11,7 +13,7 @@ export const useProductsStore = defineStore("products", {
   },
 
   actions: {
-    displayItem(){
+    async displayItem(){
 
       this.list = [];
       this.products = [];
@@ -178,6 +180,7 @@ export const useProductsStore = defineStore("products", {
             'Image': 'https://images.penguinrandomhouse.com/cover/9780744056327'},
 
         ]
+    
 
       let itemValue;
       let object;
@@ -197,6 +200,20 @@ export const useProductsStore = defineStore("products", {
           this.list.push(this.item);
       }
 
+  },
+
+  async uploadProduct(objectData){
+        let objectId = String(Math.floor(Math.random() *(999999-100000)+100000));
+
+        let newProduct = objectData;
+        try{
+            await setDoc(doc(db, "items", objectId), newProduct);
+            alert("Product uploaded");
+          }
+    
+          catch(error){
+            console.log(error);
+          }
   },
 
   getProductById(id){
@@ -298,6 +315,20 @@ export const useProductsStore = defineStore("products", {
                 break;
         }
     }
+  },
+
+  async addProductToCart(userId, objectInfo){
+
+    console.log("SHOWING", userId, objectInfo.id);
+
+    try{
+        await setDoc(doc(db, "users", userId, objectInfo.id), objectInfo);
+        alert("Product uploaded");
+      }
+
+      catch(error){
+        console.log(error);
+      }
   }
   }
 })
