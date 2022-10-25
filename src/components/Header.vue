@@ -53,7 +53,11 @@
         },
 
         computed: {
-            ...mapStores(useAuthenticationStore)
+            ...mapStores(useAuthenticationStore),
+
+            getUserId(){
+                return this.authenticationStore.userId
+            }
         }, 
 
         components: {
@@ -61,7 +65,8 @@
         },
 
         mounted(){
-            this.authenticationStore.validate()
+            this.authenticationStore.validate();
+            console.log(this.getUserId);
         }
 }
 

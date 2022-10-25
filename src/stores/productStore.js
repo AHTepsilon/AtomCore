@@ -322,7 +322,7 @@ export const useProductsStore = defineStore("products", {
     console.log("SHOWING", userId, objectInfo.id);
 
     try{
-        await setDoc(doc(db, "users", userId, objectInfo.id), objectInfo);
+        await setDoc(doc(db, "users", userId, objectInfo.id, objectInfo.Name), objectInfo);
         alert("Product uploaded");
       }
 

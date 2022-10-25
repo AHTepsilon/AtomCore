@@ -6,7 +6,7 @@ import { setDoc, doc } from "firebase/firestore";
 
 export const useAuthenticationStore = defineStore("authentication", {
   state: () => ({
-
+    userId: null
   }),
 
   getters: {
@@ -81,20 +81,16 @@ export const useAuthenticationStore = defineStore("authentication", {
 
     validate(){
 
-      let userId;
-
         onAuthStateChanged(auth, (user) => {
 
             if (user) {
               const user = auth.currentUser;
-              console.log("USERID", user.uid);
-              userId = user.uid
+              this.userId = user.uid;
             } else {
               console.log("User is not signed in");
             }
           });
 
-      return userId;
     },
   }
 })

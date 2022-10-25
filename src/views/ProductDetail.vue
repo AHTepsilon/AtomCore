@@ -21,6 +21,9 @@ import { useAuthenticationStore } from '../stores/authentication';
         computed: {
             ...mapStores(useProductsStore, useAuthenticationStore),
             
+            getUser(){
+                return this.authenticationStore.userId
+            }
         },
 
         data(){
@@ -29,12 +32,12 @@ import { useAuthenticationStore } from '../stores/authentication';
 
         mounted(){
             this.current = this.productsStore.getProductById(this.$route.params.id);
-            this.authenticationStore.validate()
+            console.log(this.getUser)
         },
 
         methods: {
             addToCart(){
-                this.productsStore.addProductToCart(this.authenticationStore.validate(), this.current);
+                this.productsStore.addProductToCart(this.getUser, this.current);
             }
         }
     }
