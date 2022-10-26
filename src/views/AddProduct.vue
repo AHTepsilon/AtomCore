@@ -52,16 +52,15 @@ import { useProductsStore } from '../stores/productStore';
 					quantity: "",
 					productUnit: "",
 					productPrice: "",
-					productSubmit: "",
-					objectId: "",
+					productRating: 0
 				}
 			}		
 		},
 
 		computed: {
-            ...mapStores(useProductsStore)
+            ...mapStores(useProductsStore),
         },
-		
+
 		methods: {
 		
 			productUploaded(){

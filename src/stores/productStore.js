@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { auth, db } from '../firebase/firebase';
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, collection } from "firebase/firestore";
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
       products: [],
+      id: null,
+      firebaseProducts: [],
   }),
 
   getters: {
@@ -13,13 +15,34 @@ export const useProductsStore = defineStore("products", {
   },
 
   actions: {
+    async defineDocs(){
+        const docRef = doc(db, "items", this.products.id);
+        const docSnap = await getDoc(docRef, "items");
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            data = docSnap.data();
+          } else {
+            console.log("No such document!");
+          }
+        return data;
+      },
+
+      async getProductsFromDatabase(){
+        let firebaseProducts = await this.defineDocs()
+
+        this.firebaseProducts = firebaseProducts;
+        console.log(firebaseProducts);
+
+      },
+
     async displayItem(){
 
       this.list = [];
       this.products = [];
-
-      this.products = [        
-            {'Name': 'Ethanol',
+      
+      this.products.push(this.firebaseProducts);
+      //this.products = await this.defineDocs(db);
+            /*{'Name': 'Ethanol',
             'Price': 5,
             'Quantity': '1',
             'Type': 'chemical',
@@ -179,7 +202,7 @@ export const useProductsStore = defineStore("products", {
             'id': '420129',
             'Image': 'https://images.penguinrandomhouse.com/cover/9780744056327'},
 
-        ]
+        ]*/
     
 
       let itemValue;
@@ -205,7 +228,11 @@ export const useProductsStore = defineStore("products", {
   async uploadProduct(objectData){
         let objectId = String(Math.floor(Math.random() *(999999-100000)+100000));
 
+        this.id = objectId;
+
         let newProduct = objectData;
+        objectData.id = objectId;
+
         try{
             await setDoc(doc(db, "items", objectId), newProduct);
             alert("Product uploaded");
@@ -214,6 +241,10 @@ export const useProductsStore = defineStore("products", {
           catch(error){
             console.log(error);
           }
+  },
+
+  printId(){
+    console.log(this.id)
   },
 
   getProductById(id){
@@ -322,13 +353,19 @@ export const useProductsStore = defineStore("products", {
     console.log("SHOWING", userId, objectInfo.id);
 
     try{
-        await setDoc(doc(db, "users", userId, objectInfo.id, objectInfo.Name), objectInfo);
-        alert("Product uploaded");
+        if(userId != null){
+            await setDoc(doc(db, "users", userId, objectInfo.id, objectInfo.Name), objectInfo);
+            alert("Product added to cart");
+        }
+        else{
+            alert("Please log in before adding products to cart");
+        }
       }
 
       catch(error){
         console.log(error);
       }
-  }
+  },
+
   }
 })

@@ -8,7 +8,7 @@
         <ul class="header_buttons">
 			<RouterLink :to="{name: 'addProduct'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
             <RouterLink :to="{name: 'shop'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li></RouterLink>
-            <li @click="showCart = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/properCart.png" style="width: 35px; height: 35px"></li>
+            <RouterLink :to="{name: 'shopping-cart'}"><li @click="showCart = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/properCart.png" style="width: 35px; height: 35px"></li></RouterLink>
             <li @click="showModal = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
             <RouterLink :to="{name: 'login'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li></RouterLink>
         </ul>

@@ -8,6 +8,7 @@ import ProductShowcase from '../views/ProductShowcase.vue'
 import ProductDetail from '../views/ProductDetail.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
+import Cart from '../views/Cart.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,12 @@ const router = createRouter({
 		path:'/',
 		name: 'register',
 		component: SignUp
+	},
+
+	{
+		path:'/',
+		name: 'shopping-cart',
+		component: Cart
 	}
   ]
 })

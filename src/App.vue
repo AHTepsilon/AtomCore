@@ -9,6 +9,7 @@ import ProductShowcase from './views/ProductShowcase.vue'
 import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import NotAvailableModal from './components/NotAvailableModal.vue'
+import Cart from './views/Cart.vue'
 
 export default {
   components: {
@@ -20,7 +21,8 @@ export default {
     ProductShowcase,
     NotAvailableModal,
     Login,
-    SignUp
+    SignUp,
+    Cart
   },
 
   data(){
