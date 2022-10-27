@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { auth, db } from '../firebase/firebase';
-import { doc, getDoc, setDoc, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
@@ -16,31 +16,33 @@ export const useProductsStore = defineStore("products", {
 
   actions: {
     async defineDocs(){
-        const docRef = doc(db, "items", this.products.id);
-        const docSnap = await getDoc(docRef, "items");
-        if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-            data = docSnap.data();
-          } else {
-            console.log("No such document!");
-          }
-        return data;
+        const querySnapshot = await getDocs(collection(db, "items"));
+        querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+
+        console.log("HEY", doc.data().productName)
+
+        const itemObject = {
+            "id": doc.id,
+            "Name": doc.data().productName,
+            "Price": doc.data().productPrice,
+            "Rating": doc.data().productRating,
+            "Type": doc.data().productType,
+            "Unit": doc.data().productUnit,
+            "Quantity": doc.data().quantity
+        }
+
+        this.products.push(itemObject);
+        });
+
       },
-
-      async getProductsFromDatabase(){
-        let firebaseProducts = await this.defineDocs()
-
-        this.firebaseProducts = firebaseProducts;
-        console.log(firebaseProducts);
-
-      },
-
     async displayItem(){
 
       this.list = [];
       this.products = [];
-      
-      this.products.push(this.firebaseProducts);
+      this.defineDocs();
+
+      console.log(this.products);
       //this.products = await this.defineDocs(db);
             /*{'Name': 'Ethanol',
             'Price': 5,

@@ -64,6 +64,7 @@
 
         mounted(){
             this.productsStore.displayItem();
+            this.productsStore.defineDocs();
             //this.productsStore.defineDocs(this.idGet)
         },
 
