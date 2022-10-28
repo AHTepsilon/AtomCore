@@ -10,10 +10,12 @@ export const useProductsStore = defineStore("products", {
       id: null,
       firebaseProducts: [],
       cartData: null,
+      shoppingCart: [],
   }),
 
   getters: {
       getProducts: (state) => [...state.products],
+      getShoppingCart: (state) => [...state.shoppingCart],
   },
 
   actions: {
@@ -206,12 +208,19 @@ export const useProductsStore = defineStore("products", {
       }
   },
 
+  async assingValuesToCart(data){
+    this.cartData = data;
+    this.shoppingCart.push(this.cartData);
+  },
+
   async getCart(userId){
+    this.shoppingCart = [];
     const querySnapshot = await getDocs(collection(db, "users", userId, "cart"));
     querySnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());
 
-        this.cartData = doc.data();
+    this.assingValuesToCart(doc.data())
+
     });
   },
 
