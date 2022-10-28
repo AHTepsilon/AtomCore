@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { auth, db } from '../firebase/firebase';
-import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const useProductsStore = defineStore("products", {
@@ -26,6 +26,7 @@ export const useProductsStore = defineStore("products", {
 
         const itemObject = {
             "id": doc.id,
+            "image": doc.data().image,
             "Name": doc.data().productName,
             "Price": doc.data().productPrice,
             "Rating": doc.data().productRating,
@@ -223,6 +224,26 @@ export const useProductsStore = defineStore("products", {
 
     });
   },
+
+  async uploadPicture(file){
+    const storage = getStorage();
+    const storageRef = ref(storage, 'imgs')
+
+    uploadBytes(storageRef, file).then((snapshot) => {
+        console.log('Uploaded file');
+    })
+  },
+
+  async changeRating(objectInfo, newValue){
+        
+        const querySnapshot = await getDocs(collection(db, "items", objectInfo.id, "totalRatings"));
+        querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());     
+        });
+
+       // await updateDoc(totalRatingsRef, totalRatings + 1);
+
+  }
 
   }
 })

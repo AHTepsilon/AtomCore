@@ -6,7 +6,8 @@ import { setDoc, doc } from "firebase/firestore";
 
 export const useAuthenticationStore = defineStore("authentication", {
   state: () => ({
-    userId: null
+    userId: null,
+    isAdmin: false,
   }),
 
   getters: {
@@ -48,7 +49,9 @@ export const useAuthenticationStore = defineStore("authentication", {
 
     async SignUp(email, password){
 
-      let newUser = {email, password}
+      let isUserAdmin = this.isAdmin;
+
+      let newUser = {email, password, isUserAdmin}
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -92,5 +95,17 @@ export const useAuthenticationStore = defineStore("authentication", {
           });
 
     },
+
+    async checkIfUserIsAdmin(){
+      const docRef = doc(db, "users", this.userId);
+      const docSnap = await getDoc(docRef);
+
+      if(docSnap.exists()){
+        console.log("Document Data: ", docSnap.data());
+      }
+      else{
+        console.log("error no document auth");
+      }
+    }
   }
 })

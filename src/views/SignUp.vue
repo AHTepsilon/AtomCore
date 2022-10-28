@@ -19,6 +19,7 @@ export default {
             email: '',
             password: '',
             passwordConf: '',
+            isAdmin: false
         }
     },
     methods: {
@@ -26,7 +27,7 @@ export default {
             console.log(this.email, this.password)
 
             if(this.password === this.passwordConf){
-                this.authenticationStore.SignUp(this.email, this.password)
+                this.authenticationStore.SignUp(this.email, this.password, this.isAdmin)
             }
             else{
                 alert("Passwords do not match, try again")

@@ -7,7 +7,15 @@
             <h3 class="section_area_div_text section_area_div_type">{{ current.Type }}</h3>
             <h3 class="section_area_div_text section_area_div_amount">{{ current.Quantity }} {{ current.Unit }}</h3>
             <h3 class="section_area_div_text section_area_div_id">Product ID: {{$route.params.id}}</h3>
-            <h3>Rating:</h3>
+            <div class="buttons-div" style="display: flex; align-items: center;">
+                <h3>Rating: </h3> 
+                <button @click="rateProduct(1)" class="buttons-div-one butt">1</button>
+                <button @click="rateProduct(2)" class="buttons-div-two butt">2</button>
+                <button @click="rateProduct(3)" class="buttons-div-three butt">3</button>
+                <button @click="rateProduct(4)" class="buttons-div-four butt">4</button>
+                <button @click="rateProduct(5)" class="buttons-div-five butt">5</button>
+            </div>
+            <h3 class="section_area_div_text section_area_div_type">Current rating: {{ current.Rating }}</h3>
         </div>
         <button class="addcart-button" @click="addToCart">Add to Cart</button>
     </section>
@@ -39,6 +47,10 @@ import { useAuthenticationStore } from '../stores/authentication';
         methods: {
             addToCart(){
                 this.productsStore.addProductToCart(this.getUser, this.current);
+            },
+
+            rateProduct(rating){
+                this.productsStore.changeRating(this.current, rating);
             }
         }
     }
@@ -66,6 +78,49 @@ import { useAuthenticationStore } from '../stores/authentication';
         }
 
         &_div{
+
+            .buttons-div{
+                .butt{
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 100px;
+                    margin: 5px;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
+                &-one{
+                    &:hover{
+                        background-color: yellow;
+                    }
+                }
+
+                &-two{
+                    &:hover{
+                        background-color: yellow;
+                    }
+                }
+
+                &-three{
+                    &:hover{
+                        background-color: yellow;
+                    }
+                }
+
+                &-four{
+                    &:hover{
+                        background-color: yellow;
+                    }
+                }
+
+                &-five{
+                    &:hover{
+                        background-color: yellow;
+                    }
+                }
+            }
 
             &_text{
                 

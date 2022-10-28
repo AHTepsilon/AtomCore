@@ -40,7 +40,7 @@
                 :to="`/product/${product.id}`">  
 
                 <div class="product-showcase-div-router-container">
-                    <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.Image"/>
+                    <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.image"/>
                     <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-title">{{ product.Name }}</p>
                     <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
 

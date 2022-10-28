@@ -38,7 +38,9 @@
     export default {
         data(){
             return{
-                showModal: false
+                showModal: false,
+                isAdmin: this.getUserIsAdmin,
+                current: {},
             }
         },
 
@@ -57,6 +59,10 @@
 
             getUserId(){
                 return this.authenticationStore.userId
+            },
+
+            getUserIsAdmin(){
+                return this.authenticationStore.isAdmin
             }
         }, 
 
@@ -67,6 +73,7 @@
         mounted(){
             this.authenticationStore.validate();
             console.log(this.getUserId);
+            //this.authenticationStore.checkIfUserIsAdmin();
         }
 }
 

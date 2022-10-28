@@ -52,7 +52,9 @@ import { useProductsStore } from '../stores/productStore';
 					quantity: "",
 					productUnit: "",
 					productPrice: "",
-					productRating: 0
+					productRating: 0,
+					totalRating: 0,
+					image: "",
 				}
 			}		
 		},
@@ -66,6 +68,7 @@ import { useProductsStore } from '../stores/productStore';
 			productUploaded(){
 
 			this.productsStore.uploadProduct(this.objectData);
+			//this.productsStore.uploadPicture(this.objectData.image);
 			},
 
 			onFileSelected(event){
@@ -73,6 +76,8 @@ import { useProductsStore } from '../stores/productStore';
 
 				reader.addEventListener("load", (ev)=>{
 					this.selectedFile = reader.result;
+
+					this.objectData.image = this.selectedFile
 
 					//console.log(this.selectedFile);
 				});
