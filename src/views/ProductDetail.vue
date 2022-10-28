@@ -7,6 +7,7 @@
             <h3 class="section_area_div_text section_area_div_type">{{ current.Type }}</h3>
             <h3 class="section_area_div_text section_area_div_amount">{{ current.Quantity }} {{ current.Unit }}</h3>
             <h3 class="section_area_div_text section_area_div_id">Product ID: {{$route.params.id}}</h3>
+            <h3>Rating:</h3>
         </div>
         <button class="addcart-button" @click="addToCart">Add to Cart</button>
     </section>

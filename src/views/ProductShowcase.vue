@@ -43,6 +43,7 @@
                     <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.Image"/>
                     <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-title">{{ product.Name }}</p>
                     <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
+
                 </div>
             </RouterLink>
             </div>
@@ -64,7 +65,6 @@
 
         mounted(){
             this.productsStore.displayItem();
-            this.productsStore.defineDocs();
             //this.productsStore.defineDocs(this.idGet)
         },
 
