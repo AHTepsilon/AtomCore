@@ -1,6 +1,15 @@
 # AtomCore
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the semester-long project for my Advanced Web Programming class at university. It's a prototype for a chemical supplies' webstore. <br>
+
+The website has the following features so far:
+- Login and sign up
+- Adding products to database
+- Getting products from database
+- Adding products to shopping cart
+
+The website uses Firebase for database storage and authentication. Pinia for state handling and the Vue framework. <br>
+Also, I used the Sass preprocessor and the Underscore library to handle sorting.
 
 ## Recommended IDE Setup
 
@@ -28,3 +37,32 @@ npm run dev
 npm run build
 ```
 # AtomCore
+
+## 
+
+## Dependencies Setup
+
+### Vue
+
+```sh
+npm install vue
+```
+
+### Firebase
+
+```sh
+npm install firebase
+```
+
+### Underscore
+
+```sh
+npm install underscore
+```
+
+
+### Sass
+
+```sh
+npm install sass
+```
