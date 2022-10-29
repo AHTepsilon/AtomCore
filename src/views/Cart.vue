@@ -3,11 +3,12 @@
         <div class="section_text">
             <h1 class="section_text_title">Your Shopping Cart</h1>
         </div>
-        <div class="cart_area">
-            <ul>
-                <li class="cart_area_element" v-for = "item in cartGet">
-                    <h3>{{ item.Name }}</h3>
-                    <h4>{{ item.Price }}.00$</h4>
+        <div class="cart-area">
+            <ul class="cart-area-list">
+                <li class="cart-area-list-element" v-for = "item in cartGet">
+                    <img class="cart-area-list-element-img" src="{{ item.image }}">
+                    <h3 class="cart-area-list-element-title">{{ item.Name }}</h3>
+                    <h4 class="cart-area-list-element-price">{{ item.Price }}.00$</h4>
                 </li>
             </ul>
         </div>
@@ -62,5 +63,16 @@ export default {
 			margin: 4em;
 			font-family: Verdana, Geneva, Tahoma, sans-serif;
 		}
+
+        .cart-area{
+
+            &-list{
+
+                &-element{
+                    
+                    font-family: Verdana, Geneva,
+                }
+            }
+        }
     }
 </style>
