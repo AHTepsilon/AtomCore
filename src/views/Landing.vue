@@ -12,11 +12,24 @@
 </template>
 
 <script>
-	import ProductComponent from '../components/ProductComponent.vue'
-
+	import { mapStores } from 'pinia';
+import ProductComponent from '../components/ProductComponent.vue'
+import {useAuthenticationStore} from '../stores/authentication'
 	export default{
   		components:{
    	    	ProductComponent
+		},
+
+		computed: {
+			...mapStores(useAuthenticationStore),
+
+			getUserId(){
+                return this.authenticationStore.userId
+            },
+
+            getUserIsAdmin(){
+                return this.authenticationStore.isAdmin
+            }
 		},
 
 		methods: {
@@ -25,6 +38,12 @@
 					console.log(localStorage.getItem(localStorage.key(i)));
 				}
 			}
+		},
+
+		mounted(){
+			this.authenticationStore.validate();
+            console.log(this.getUserId);
+			this.authenticationStore.checkIfUserIsAdmin();
 		}
 	}
 </script>

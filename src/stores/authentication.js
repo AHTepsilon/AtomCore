@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth, db } from '../firebase/firebase';
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 
 export const useAuthenticationStore = defineStore("authentication", {
   state: () => ({
@@ -102,10 +102,13 @@ export const useAuthenticationStore = defineStore("authentication", {
 
       if(docSnap.exists()){
         console.log("Document Data: ", docSnap.data());
+
+        this.isAdmin = docSnap.data().isUserAdmin;
       }
       else{
         console.log("error no document auth");
       }
+      
     }
   }
 })
