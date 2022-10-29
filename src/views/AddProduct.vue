@@ -53,6 +53,7 @@ import { useProductsStore } from '../stores/productStore';
 					productUnit: "",
 					productPrice: "",
 					productRating: 0,
+					allRatings: 0,
 					totalRating: 0,
 					image: "",
 				}

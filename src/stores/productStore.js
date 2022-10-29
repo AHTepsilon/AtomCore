@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { auth, db } from '../firebase/firebase';
-import { doc, getDoc, setDoc, getDocs, collection, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection, updateDoc, increment, runTransaction } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const useProductsStore = defineStore("products", {
@@ -235,13 +235,67 @@ export const useProductsStore = defineStore("products", {
   },
 
   async changeRating(objectInfo, newValue){
+
+    /*try{
+        console.log(await getDocs(collection(db, "items", objectInfo.id, "totalRatings"), objectInfo));
+        alert("Product added to cart");
+      }
+
+      catch(error){
+        console.log(error);
+      }*/
         
-        const querySnapshot = await getDocs(collection(db, "items", objectInfo.id, "totalRatings"));
+        /*const querySnapshot = await getDocs(collection(db, "items", objectInfo.id, "totalRatings"));
         querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());     
-        });
+        console.log(doc.id, " => ", doc.data());
+        });*/
 
        // await updateDoc(totalRatingsRef, totalRatings + 1);
+
+       /*const docRef = doc(db, "items", objectInfo.id);
+       const docSnap = await getDoc(docRef);
+ 
+       if(docSnap.exists()){
+         console.log("Document Data: ", docSnap.data());
+
+         docSnap.data().totalRatings++;
+
+         docSnap.data().productRating = (docSnap.data().productRating + newValue)/docSnap.data().totalRatings
+
+       }
+       else{
+         console.log("error no document auth");
+       }*/
+
+       const itemRef = doc(db, "items", objectInfo.id);
+
+        await updateDoc(itemRef, {
+            totalRatings: increment(1)
+        });
+
+        await updateDoc(itemRef, {
+            allRatings: increment(newValue)
+        });
+        
+        const itemDocRef = doc(db, "items", objectInfo.id);
+
+        try {
+    
+            await runTransaction(db, async (transaction) => {
+              const itemDoc = await transaction.get(itemDocRef);
+              if (!itemDoc.exists()) {
+                throw "Document does not exist!";
+              }
+          
+              console.log(itemDoc.data().productRating + newValue);
+
+              const newRating = (itemDoc.data().allRatings/itemDoc.data().totalRatings);
+              transaction.update(itemDocRef, { productRating: newRating });
+            });
+            console.log("Transaction successfully committed!");
+          } catch (e) {
+            console.log("Transaction failed: ", e);
+          }
 
   }
 

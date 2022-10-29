@@ -1,6 +1,6 @@
 <template>
     <section class="section_area">
-        <img :src="current.Image" class="product_div_image">
+        <img :src="current.image" class="product_div_image">
         <div class="section_area_div">
             <h1 class="section_area_div_text section_area_div_title">{{ current.Name }}</h1>
             <h2 class="section_area_div_text section_area_div_price">{{ current.Price }}.00$</h2>
@@ -50,6 +50,7 @@ import { useAuthenticationStore } from '../stores/authentication';
             },
 
             rateProduct(rating){
+                console.log(rating);
                 this.productsStore.changeRating(this.current, rating);
             }
         }
