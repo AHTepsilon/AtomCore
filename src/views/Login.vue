@@ -6,6 +6,7 @@
 
         <RouterLink class="login-form-link login-form-item" :to="{name: 'register'}">Don't have a user? Sign up now!</RouterLink>
         <button class="login-form-button login-form-item" @click="logOut">Log Out</button>
+        <button class="login-form-item login-form-button-del" @click="deleteUser">Delete User</button>
     </form>
 </template>
 
@@ -28,6 +29,12 @@ export default {
 
         logOut(){
             this.authenticationStore.signOut()
+        },
+
+        deleteUser(){
+            if(window.confirm('Are you sure you want to delete your user?')){
+                this.authenticationStore.deleteUserFromAuth()
+            }
         },
     },
     computed: {
@@ -81,6 +88,18 @@ export default {
 				{
 					cursor: pointer;
 					background: darken($darkCyan, 5%);
+				}
+        }
+
+        &-button-del{
+            background: #ff0000;
+            border: none;
+            color: #FFFFFF;
+
+            &:hover
+				{
+					cursor: pointer;
+					background: darken(#ff0000, 5%);
 				}
         }
     }

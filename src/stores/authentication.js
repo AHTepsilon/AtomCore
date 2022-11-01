@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
-import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, signOut, deleteUser } from "firebase/auth";
 import { auth, db } from '../firebase/firebase';
 import { setDoc, doc, getDoc } from "firebase/firestore";
 
@@ -109,6 +109,18 @@ export const useAuthenticationStore = defineStore("authentication", {
         console.log("error no document auth");
       }
       
+    },
+    
+    async deleteUserFromAuth(){
+      const user = auth.currentUser;
+
+      deleteUser(user).then(() => {
+        alert("User Deleted")
+      }).catch((error) => {
+        // An error ocurred
+        // ...
+      })
     }
   }
+
 })
