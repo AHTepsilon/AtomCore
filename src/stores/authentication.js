@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import _, { map } from 'underscore';
 import { signInWithEmailAndPassword, onAuthStateChanged, createUserWithEmailAndPassword, signOut, deleteUser } from "firebase/auth";
 import { auth, db } from '../firebase/firebase';
-import { setDoc, doc, getDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
 
 export const useAuthenticationStore = defineStore("authentication", {
   state: () => ({
@@ -113,8 +113,11 @@ export const useAuthenticationStore = defineStore("authentication", {
     
     async deleteUserFromAuth(){
       const user = auth.currentUser;
+      await deleteDoc(doc(db, "users", this.userId));
+      console.log(user);
 
       deleteUser(user).then(() => {
+        
         alert("User Deleted")
       }).catch((error) => {
         // An error ocurred

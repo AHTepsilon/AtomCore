@@ -6,7 +6,7 @@
 
         <RouterLink class="login-form-link login-form-item" :to="{name: 'register'}">Don't have a user? Sign up now!</RouterLink>
         <button class="login-form-button login-form-item" @click="logOut">Log Out</button>
-        <button class="login-form-item login-form-button-del" @click="deleteUser">Delete User</button>
+        <button class="login-form-item login-form-button-del" @click.prevent="deleteUser">Delete User</button>
     </form>
 </template>
 

@@ -71,9 +71,11 @@
         },
 
         mounted(){
-            this.authenticationStore.validate();
-            console.log(this.getUserId);
             //this.authenticationStore.checkIfUserIsAdmin();
+        },
+
+        watch: {
+            
         }
 }
 
