@@ -55,7 +55,7 @@ export const useAuthenticationStore = defineStore("authentication", {
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in 
+          // Signed in  
           const user = userCredential.user;
 
           this.addUserToDatabase(db, user.uid, newUser)

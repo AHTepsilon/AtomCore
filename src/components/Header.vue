@@ -63,7 +63,7 @@
 
             getUserIsAdmin(){
                 return this.authenticationStore.isAdmin
-            }
+            },
         }, 
 
         components: {
@@ -71,7 +71,7 @@
         },
 
         mounted(){
-            //this.authenticationStore.checkIfUserIsAdmin();
+            
         },
 
         watch: {

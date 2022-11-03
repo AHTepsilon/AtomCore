@@ -1,13 +1,15 @@
 <template>
     <section class="section-text">
-        <h1 class="main_title">Add Product</h1>
-        <p class="main_subtitle">ONLY FOR ADMINS - Add products to the database.</p>
+        <h1 class="main_title">Manage Products</h1>
+        <p class="main_subtitle">ONLY FOR ADMINS - Add products and edit products on the database.</p>
     </section>
 
     <section>
         <h2 class="form_title">Insert Data and Submit to Database</h2>
         <div class="addProduct_div">
-            <form action="" class="addProduct_div_form" @submit.prevent = "productUploaded">
+			<div>
+				<button class="addProduct_div_form_button" @click="setTrueAddForm">Add Items</button>
+				<form action="" class="addProduct_div_form" @submit.prevent = "productUploaded" v-if="showingAddForm">
                 <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="objectData.productName" required>
                 <select class="addProduct_div_form_select" name="" id="" v-model="objectData.productType" required>
                     <option value="" disabled selected>Type of Product</option>
@@ -34,6 +36,16 @@
                 <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
                 <input class="addProduct_div_form_button" type="submit" value="Upload Product">
             </form>
+			</div>
+
+			<div>
+				<button class="addProduct_div_form_button" @click="setTrueShowForm">Edit Items</button>
+				<form action="" class="addProduct_div_form" v-if="showingEditForm">
+				<select class="addProduct_div_form_select" name="" id="" v-model="selectedProduct" @change="selectProductEditList($event)" required>
+					<option v-for="product in productsGet" v-bind:value="product.id">{{ product.id }}</option>
+				</select>
+			</form>
+			</div>
         </div>
     </section>
 </template>
@@ -56,12 +68,20 @@ import { useProductsStore } from '../stores/productStore';
 					allRatings: 0,
 					totalRating: 0,
 					image: "",
-				}
-			}		
+				},
+				
+				showingEditForm: false,
+				showingAddForm: false,
+				products: this.gProducts,
+				selectedProduct: null
+			}	
 		},
 
 		computed: {
             ...mapStores(useProductsStore),
+			productsGet(){
+                return this.productsStore.getProducts;
+            }
         },
 
 		methods: {
@@ -83,8 +103,33 @@ import { useProductsStore } from '../stores/productStore';
 					//console.log(this.selectedFile);
 				});
 				reader.readAsDataURL(event.target.files[0]);
+			},
+
+			setTrueShowForm(){
+				this.showingEditForm = !this.showingEditForm
+			},
+
+			setTrueAddForm(){
+				this.showingAddForm = !this.showingAddForm
+			},
+
+			gProducts(){
+                return this.authenticationStore.getProducts
+            },
+
+			selectProductEditList(event){
+				console.log(event.target.value);
 			}
 		
+		},
+
+		mounted(){
+			this.productsStore.displayItem();
+			console.log(this.productsStore.getProducts)
+		},
+
+		watch:{
+			//products: this.productsStore.getProducts
 		}
 	}
 </script>
@@ -121,6 +166,12 @@ import { useProductsStore } from '../stores/productStore';
 
 		$babyBlue: #DAE4FF;
 		$darkCyan: #A6BFFF;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
 		&_form
 		{
 			justify-content: center;
