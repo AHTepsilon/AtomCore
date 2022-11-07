@@ -119,6 +119,15 @@ import { useProductsStore } from '../stores/productStore';
 
 			selectProductEditList(event){
 				console.log(event.target.value);
+			},
+
+			checkIfSelectedIsNull(p){
+				if(p){
+                    return true;
+                }
+				else{
+					return false;
+				}
 			}
 		
 		},
