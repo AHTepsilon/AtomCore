@@ -91,7 +91,7 @@ export const useProductsStore = defineStore("products", {
 
     try{
         await setDoc(doc(db, "items", this.id), newProduct);
-        alert("Product edited succesfully");
+        alert("Product edited succesfully, ratings have been reset");
       }
 
       catch(error){
