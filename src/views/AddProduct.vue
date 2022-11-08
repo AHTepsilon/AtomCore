@@ -67,7 +67,7 @@
 					<option value="millilliters">Millilliters</option>
                 </select>
 				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="objectDataToEdit.productPrice" required>
-                <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
+                <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelectedEdit" required>
                 <input class="addProduct_div_form_button" type="submit" value="Upload Product">
 			</form>
 			</div>
@@ -141,6 +141,19 @@ import { useProductsStore } from '../stores/productStore';
 					this.selectedFile = reader.result;
 
 					this.objectData.image = this.selectedFile
+
+					//console.log(this.selectedFile);
+				});
+				reader.readAsDataURL(event.target.files[0]);
+			},
+
+			onFileSelectedEdit(event){
+				const reader = new FileReader();
+
+				reader.addEventListener("load", (ev)=>{
+					this.selectedFile = reader.result;
+
+					this.objectDataToEdit.image = this.selectedFile
 
 					//console.log(this.selectedFile);
 				});
