@@ -40,10 +40,35 @@
 
 			<div>
 				<button class="addProduct_div_form_button" @click="setTrueShowForm">Edit Items</button>
-				<form action="" class="addProduct_div_form" v-if="showingEditForm">
+				<form action="" class="addProduct_div_form" v-if="showingEditForm" @submit.prevent = "productEdited">
 				<select class="addProduct_div_form_select" name="" id="" v-model="selectedProduct" @change="selectProductEditList($event)" required>
 					<option v-for="product in productsGet" v-bind:value="product.id">{{ product.id }}</option>
 				</select>
+				<input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="objectDataToEdit.productName" required>
+                <select class="addProduct_div_form_select" name="" id="" v-model="objectDataToEdit.productType" required>
+                    <option value="" disabled selected>Type of Product</option>
+					<option value="chemical">Chemical</option>
+					<option value="labEquipment">Lab Equipment</option>
+					<option value="glassware">Glassware</option>
+					<option value="safetyEquipment">Safety Equipment</option>
+					<option value="book">Book</option>
+					<option value="biologicalEquipment">Biological Equipment</option>
+                </select>
+                <input class="addProduct_div_form_input" type="text" placeholder="Quantity" v-model="objectDataToEdit.quantity" required>
+                <select class="addProduct_div_form_select" name="" v-model="objectDataToEdit.productUnit" required>
+                    <option value="" disabled>Unit of Measurement</option>
+					<option value="units">Units</option>
+					<option value="kilograms">Kilograms</option>
+					<option value="grams">Grams</option>
+					<option value="miligrams">Miligrams</option>
+					<option value="gallons">Gallons</option>
+					<option value="ounces">Ounces</option>
+					<option value="liters">Liters</option>
+					<option value="millilliters">Millilliters</option>
+                </select>
+				<input class="addProduct_div_form_input" type="number" placeholder="Price (USD)" v-model="objectDataToEdit.productPrice" required>
+                <input class="addProduct_div_form_image" type="file" placeholder="Picture" @change="onFileSelected" required>
+                <input class="addProduct_div_form_button" type="submit" value="Upload Product">
 			</form>
 			</div>
         </div>
@@ -69,10 +94,23 @@ import { useProductsStore } from '../stores/productStore';
 					totalRating: 0,
 					image: "",
 				},
+
+				objectDataToEdit: 
+				{
+					productName: "",
+					productType: "",
+					quantity: "",
+					productUnit: "",
+					productPrice: "",
+					productRating: 0,
+					allRatings: 0,
+					totalRating: 0,
+					image: "",
+				},
 				
 				showingEditForm: false,
 				showingAddForm: false,
-				products: this.gProducts,
+				products: this.productsGet,
 				selectedProduct: null
 			}	
 		},
@@ -90,6 +128,10 @@ import { useProductsStore } from '../stores/productStore';
 
 			this.productsStore.uploadProduct(this.objectData);
 			//this.productsStore.uploadPicture(this.objectData.image);
+			},
+
+			productEdited(){
+				this.productsStore.editProduct(this.objectDataToEdit);
 			},
 
 			onFileSelected(event){
@@ -128,7 +170,7 @@ import { useProductsStore } from '../stores/productStore';
 				else{
 					return false;
 				}
-			}
+			},
 		
 		},
 
@@ -138,7 +180,17 @@ import { useProductsStore } from '../stores/productStore';
 		},
 
 		watch:{
-			//products: this.productsStore.getProducts
+			selectedProduct(newData, oldData){
+				this.productsStore.getProducts.forEach(element => {
+					if(element.id == newData){
+						this.objectDataToEdit.productName = element.Name;
+						this.objectDataToEdit.id = element.id
+						this.objectDataToEdit.productPrice = element.productPrice
+						this.objectDataToEdit.image = element.image
+						this.objectDataToEdit.quantity = element.quantity
+					}
+				});
+			}
 		}
 	}
 </script>

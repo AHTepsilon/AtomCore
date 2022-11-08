@@ -22,7 +22,7 @@ export const useProductsStore = defineStore("products", {
     async defineDocs(){
         const querySnapshot = await getDocs(collection(db, "items"));
         querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
 
         const itemObject = {
             "id": doc.id,
@@ -85,6 +85,20 @@ export const useProductsStore = defineStore("products", {
           }
   },
 
+  async editProduct(objectData){
+    let newProduct = objectData;
+    this.id = objectData.id;
+
+    try{
+        await setDoc(doc(db, "items", this.id), newProduct);
+        alert("Product edited succesfully");
+      }
+
+      catch(error){
+        console.log(error);
+      }
+},
+
   printId(){
     console.log(this.id)
   },
@@ -124,27 +138,27 @@ export const useProductsStore = defineStore("products", {
                 break;
             case "0":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "glassware");
+                this.products = this.products.filter((item) => item.productType === "glassware");
                 break;
             case "1":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "chemical");
+                this.products = this.products.filter((item) => item.productType === "chemical");
                 break;
             case "2":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "lab equipment");
+                this.products = this.products.filter((item) => item.productType === "lab equipment");
                 break;
             case "3":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "safety equipment");
+                this.products = this.products.filter((item) => item.productType === "safety equipment");
                 break;
             case "4":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "book");
+                this.products = this.products.filter((item) => item.productType === "book");
                 break;
             case "5":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "biological equipment");
+                this.products = this.products.filter((item) => item.productType === "biological equipment");
                 break;
         }
     }
@@ -156,15 +170,15 @@ export const useProductsStore = defineStore("products", {
                 break;
             case "0":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Price < 5);
+                this.products = this.products.filter((item) => item.productPrice < 5);
                 break;
             case "1":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Price < 10);
+                this.products = this.products.filter((item) => item.productPrice < 10);
                 break;
             case "2":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Price < 15);
+                this.products = this.products.filter((item) => item.productPrice < 15);
                 break;
         }
     }
@@ -176,15 +190,15 @@ export const useProductsStore = defineStore("products", {
                 break;
             case "0":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "chemical" && item.Unit === "grams" || item.Unit === "miligrams" || item.Unit === "ounces" || item.Unit === "kilograms");
+                this.products = this.products.filter((item) => item.productType === "chemical" && item.Unit === "grams" || item.Unit === "miligrams" || item.Unit === "ounces" || item.Unit === "kilograms");
                 break;
             case "1":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type === "chemical" && item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
+                this.products = this.products.filter((item) => item.productType === "chemical" && item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
                 break;
             case "2":
                 this.displayItem();
-                this.products = this.products.filter((item) => item.Type !== "chemical");
+                this.products = this.products.filter((item) => item.productType !== "chemical");
                 break;
         }
     }
@@ -235,38 +249,6 @@ export const useProductsStore = defineStore("products", {
   },
 
   async changeRating(objectInfo, newValue){
-
-    /*try{
-        console.log(await getDocs(collection(db, "items", objectInfo.id, "totalRatings"), objectInfo));
-        alert("Product added to cart");
-      }
-
-      catch(error){
-        console.log(error);
-      }*/
-        
-        /*const querySnapshot = await getDocs(collection(db, "items", objectInfo.id, "totalRatings"));
-        querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        });*/
-
-       // await updateDoc(totalRatingsRef, totalRatings + 1);
-
-       /*const docRef = doc(db, "items", objectInfo.id);
-       const docSnap = await getDoc(docRef);
- 
-       if(docSnap.exists()){
-         console.log("Document Data: ", docSnap.data());
-
-         docSnap.data().totalRatings++;
-
-         docSnap.data().productRating = (docSnap.data().productRating + newValue)/docSnap.data().totalRatings
-
-       }
-       else{
-         console.log("error no document auth");
-       }*/
-
        const itemRef = doc(db, "items", objectInfo.id);
 
         await updateDoc(itemRef, {

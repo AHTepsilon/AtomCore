@@ -80,34 +80,6 @@
                 this.productsStore.filterProducts(selected, caller);
             }
         }
-        
-        /*methods: {
-            getItem(){
-
-                this.list = [];
-
-                let itemValue;
-                let object;
-
-                let itemArr = [];
-
-                for(let i = 0; i < localStorage.length; i++){
-                    itemValue = localStorage.getItem(localStorage.key(i));
-                    object = JSON.parse(itemValue);
-
-                    itemArr.push(object);
-                }
-
-
-                for(let j = 0; j < itemArr.length; j++){
-                    console.log();
-                    
-                    this.item = itemArr[j];
-                    this.list.push(this.item);
-                }
-
-            },
-        },*/
     }
 </script>
 
