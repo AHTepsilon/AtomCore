@@ -36,9 +36,6 @@ npm run dev
 ```sh
 npm run build
 ```
-# Code Setup
-
-## 
 
 ## Dependencies Setup
 
