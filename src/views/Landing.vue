@@ -6,7 +6,7 @@
 			<p class="section_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
-			<button class="section_text_button" v-on:click="printLocalStorage">Sign Up Now</button>
+			<RouterLink :to="{name: 'register'}"><button class="section_text_button">Sign Up Now</button></RouterLink>
 		</div>
     </section>
 </template>
@@ -49,6 +49,11 @@ import {useAuthenticationStore} from '../stores/authentication'
 </script>
 
 <style lang="scss">
+
+	$headerColor: #FFFFFF;
+    $babyBlue: #DAE4FF;
+    $darkCyan: #A6BFFF;
+
 	.headimage_section
 	{
 		margin: 4em;
@@ -62,6 +67,15 @@ import {useAuthenticationStore} from '../stores/authentication'
 
 			&_button{
 				width: 120px;
+				height: 3em;
+
+				border: none;
+				background-color: $babyBlue;
+
+				&:hover{
+					background: darken($color: $babyBlue, $amount: 5);
+					cursor: pointer;
+				}
 			}
 		}
 	}

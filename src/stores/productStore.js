@@ -11,6 +11,7 @@ export const useProductsStore = defineStore("products", {
       firebaseProducts: [],
       cartData: null,
       shoppingCart: [],
+      staticProductList: []
   }),
 
   getters: {
@@ -36,6 +37,7 @@ export const useProductsStore = defineStore("products", {
         }
 
         this.products.push(itemObject);
+        this.staticProductList.push(itemObject);
         });
 
       },
@@ -52,12 +54,12 @@ export const useProductsStore = defineStore("products", {
 
       let itemArr = [];
 
-      for(let i = 0; i < localStorage.length; i++){
+      /*for(let i = 0; i < localStorage.length; i++){
           itemValue = localStorage.getItem(localStorage.key(i));
           object = JSON.parse(itemValue);
 
           this.products.push(object);
-      }
+      }*/
 
       for(let j = 0; j < itemArr.length; j++){
 
@@ -131,34 +133,37 @@ export const useProductsStore = defineStore("products", {
 
   filterProducts(key, filterDo){
 
-    if(filterDo == "A"){
+    this.products = this.staticProductList
+
+    let productTypeArr = this.products;
+    let priceArr = this.products;
+    let chemicalsArr = this.products;
+
+    let filtered1 = [];
+    let filteredFinal = [];
+
+    if(filterDo == "A"){ 
         switch(key){
             case "noFilter":
-                this.displayItem();
+                productTypeArr = this.products;
                 break;
             case "0":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "glassware");
+                productTypeArr = this.products.filter((item) => item.Type === "glassware");
                 break;
             case "1":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "chemical");
+                productTypeArr = this.products.filter((item) => item.Type === "chemical");
                 break;
             case "2":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "lab equipment");
+                productTypeArr = this.products.filter((item) => item.Type === "labEquipment");
                 break;
             case "3":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "safety equipment");
+                productTypeArr = this.products.filter((item) => item.Type === "safetyEquipment");
                 break;
             case "4":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "book");
+                productTypeArr = this.products.filter((item) => item.Type === "book");
                 break;
             case "5":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "biological equipment");
+                productTypeArr = this.products.filter((item) => item.Type === "biologicalEquipment");
                 break;
         }
     }
@@ -166,19 +171,16 @@ export const useProductsStore = defineStore("products", {
     if(filterDo == "B"){
         switch(key){
             case "noFilter":
-                this.displayItem();
+                priceArr = this.products
                 break;
             case "0":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productPrice < 5);
+                priceArr = this.products.filter((item) => item.Price < 5);
                 break;
             case "1":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productPrice < 10);
+                priceArr = this.products.filter((item) => item.Price < 10);
                 break;
             case "2":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productPrice < 15);
+                priceArr = this.products.filter((item) => item.Price < 15);
                 break;
         }
     }
@@ -186,22 +188,24 @@ export const useProductsStore = defineStore("products", {
     if(filterDo == "C"){
         switch(key){
             case "noFilter":
-                this.displayItem();
+                chemicalsArr = this.products
                 break;
             case "0":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "chemical" && item.Unit === "grams" || item.Unit === "miligrams" || item.Unit === "ounces" || item.Unit === "kilograms");
+                chemicalsArr = this.products.filter((item) => item.Type === "chemical" && item.Unit === "grams" || item.Unit === "miligrams" || item.Unit === "ounces" || item.Unit === "kilograms");
                 break;
             case "1":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType === "chemical" && item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
+                chemicalsArr = this.products.filter((item) => item.Type === "chemical" && item.Unit === "millilliters" || item.Unit === "liters"  || item.Unit === "gallons");
                 break;
             case "2":
-                this.displayItem();
-                this.products = this.products.filter((item) => item.productType !== "chemical");
+                chemicalsArr = this.products.filter((item) => item.Type !== "chemical");
                 break;
         }
     }
+
+    filtered1 = productTypeArr.filter(v => priceArr.includes(v));
+    filteredFinal = filtered1.filter(v => chemicalsArr.includes(v));
+    this.products = filteredFinal;
+
   },
 
   async addProductToCart(userId, objectInfo){
