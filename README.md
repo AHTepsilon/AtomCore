@@ -36,9 +36,6 @@ npm run dev
 ```sh
 npm run build
 ```
-# AtomCore
-
-## 
 
 ## Dependencies Setup
 
@@ -66,3 +63,11 @@ npm install underscore
 ```sh
 npm install sass
 ```
+
+# TODO
+
+- Use watch to update changes in page without reloading
+- Fix images to be uploaded to storage rather than bits
+- Media Queries
+- Unit Testing
+- Deployment
