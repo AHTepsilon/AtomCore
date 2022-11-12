@@ -26,7 +26,9 @@
             <input type="text" placeholder="Search" class="searchbox_div_input">
         </div> 
     </nav>
-    <NotAvailableModal v-if="showModal" @close="toggleModal" />
+    <Transition name="bounce">
+        <NotAvailableModal v-if="showModal" @close="toggleModal" />
+    </Transition>
 </template>
 
 <script>
@@ -86,8 +88,22 @@
     $babyBlue: #DAE4FF;
     $darkCyan: #A6BFFF;
 
-    modalDisplay-enter{
-        
+    .bounce-enter-active {
+     animation: bounce-in 0.5s;
+    }
+    .bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+    }
+    @keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
     }
 
     .modalOverlay{

@@ -34,18 +34,21 @@
             </select>
         </div>
         <div class="product-showcase-div">
-            <RouterLink class="product-showcase-div-router"
-                v-for="product in productsGet"
-                :key="product.Name"
-                :to="`/product/${product.id}`">  
+            <ul class="product-showcase-div-list">
+                <li v-for="product in productsGet" class="product-showcase-div-list-item">
+                    <RouterLink class="product-showcase-div-router"
+                        :key="product.Name"
+                        :to="`/product/${product.id}`">  
 
-                <div class="product-showcase-div-router-container">
-                    <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.image"/>
-                    <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-title">{{ product.Name }}</p>
-                    <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
+                        <div class="product-showcase-div-router-container">
+                            <img class="product-showcase-div-router-container-item product-showcase-div-router-container-img" :src="product.image"/>
+                            <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-title">{{ product.Name }}</p>
+                            <p class="product-showcase-div-router-container-item product-showcase-div-router-container-item-text product-showcase-div-router-container-price">{{ product.Price }}.00$</p>
 
-                </div>
-            </RouterLink>
+                        </div>
+                    </RouterLink>
+                </li>
+            </ul>
             </div>
 
 </template>
@@ -115,6 +118,20 @@ $darkCyan: #A6BFFF;
 
     align-items: center;
     justify-content: center;
+
+    &-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+
+        &-item{
+            list-style: none;
+            margin: 20px;
+        }
+    }
 
     &-router{
 
