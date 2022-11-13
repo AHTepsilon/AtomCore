@@ -11,7 +11,7 @@ export const useProductsStore = defineStore("products", {
       firebaseProducts: [],
       cartData: null,
       shoppingCart: [],
-      staticProductList: []
+      staticProductList: [],
   }),
 
   getters: {

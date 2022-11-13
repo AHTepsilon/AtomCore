@@ -15,7 +15,7 @@
                 <button @click="rateProduct(4)" class="buttons-div-four butt">4</button>
                 <button @click="rateProduct(5)" class="buttons-div-five butt">5</button>
             </div>
-            <h3 class="section_area_div_text section_area_div_type">Current rating: {{ current.Rating }}</h3>
+            <h3 class="section_area_div_text section_area_div_type">Current rating: {{ objectRating }}</h3>
         </div>
         <button class="addcart-button" @click="addToCart">Add to Cart</button>
     </section>
@@ -32,16 +32,19 @@ import { useAuthenticationStore } from '../stores/authentication';
             
             getUser(){
                 return this.authenticationStore.userId
-            }
+            },
         },
 
         data(){
-            return {current: {}}
+            return {
+                current: {},
+                objectRating: null,
+            }
         },
 
         mounted(){
             this.current = this.productsStore.getProductById(this.$route.params.id);
-            console.log(this.getUser)
+            this.objectRating = this.current.Rating
         },
 
         methods: {
@@ -52,6 +55,12 @@ import { useAuthenticationStore } from '../stores/authentication';
             rateProduct(rating){
                 console.log(rating);
                 this.productsStore.changeRating(this.current, rating);
+            }
+        },
+
+        watch: {
+            objectRating(newRating, oldRating){
+                console.log("NEW", newRating);
             }
         }
     }
