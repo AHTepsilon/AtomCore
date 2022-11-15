@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "awesome-vue-star-rating": "^1.0.9",
+    "epic-spinners": "^2.0.0",
     "firebase": "^9.13.0",
     "pinia": "^2.0.22",
     "underscore": "^1.13.6",

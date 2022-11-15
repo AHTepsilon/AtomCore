@@ -6,7 +6,7 @@
         <div class="cart-area">
             <ul class="cart-area-list">
                 <li class="cart-area-list-element" v-for = "item in cartGet">
-                    <img class="cart-area-list-element-img" src="{{ item.image }}">
+                    <img class="cart-area-list-element-img" :src="item.image">
                     <h3 class="cart-area-list-element-title">{{ item.Name }}</h3>
                     <h4 class="cart-area-list-element-price">{{ item.Price }}.00$</h4>
                 </li>
@@ -68,9 +68,17 @@ export default {
 
             &-list{
 
+                display: flex;
+                flex-direction: column;
+
                 &-element{
                     
-                    font-family: Verdana, Geneva,
+                    font-family: Verdana, Geneva;
+                    list-style: none;
+
+                    &-img{
+                        width: 12em;
+                    }
                 }
             }
         }

@@ -45,7 +45,7 @@ export const useProductsStore = defineStore("products", {
 
       this.list = [];
       this.products = [];
-      this.defineDocs();
+      await this.defineDocs();
 
       console.log(this.products);
     
@@ -275,7 +275,7 @@ export const useProductsStore = defineStore("products", {
           
               console.log(itemDoc.data().productRating + newValue);
 
-              const newRating = (itemDoc.data().allRatings/itemDoc.data().totalRatings);
+              const newRating = Math.round((itemDoc.data().allRatings/itemDoc.data().totalRatings)*10)/10;
               transaction.update(itemDocRef, { productRating: newRating });
             });
             console.log("Transaction successfully committed!");

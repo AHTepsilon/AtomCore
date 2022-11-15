@@ -15,7 +15,8 @@
                 <button @click="rateProduct(4)" class="buttons-div-four butt">4</button>
                 <button @click="rateProduct(5)" class="buttons-div-five butt">5</button>
             </div>
-            <h3 class="section_area_div_text section_area_div_type">Current rating: {{ objectRating }}</h3>
+            <loadingIcon v-if="isLoading"></loadingIcon>
+            <h3 class="section_area_div_text section_area_div_type">Current rating: {{ current.Rating }}</h3>
         </div>
         <button class="addcart-button" @click="addToCart">Add to Cart</button>
     </section>
@@ -25,6 +26,7 @@
 import { mapStores } from 'pinia';
 import { useProductsStore } from '../stores/productStore';
 import { useAuthenticationStore } from '../stores/authentication';
+import loadingIcon from '../components/minorComponents/loadingIcon.vue'
 
     export default {
         computed: {
@@ -35,16 +37,19 @@ import { useAuthenticationStore } from '../stores/authentication';
             },
         },
 
+        components: {
+            loadingIcon
+        },
+
         data(){
             return {
                 current: {},
-                objectRating: null,
+                isLoading: false
             }
         },
 
         mounted(){
             this.current = this.productsStore.getProductById(this.$route.params.id);
-            this.objectRating = this.current.Rating
         },
 
         methods: {
@@ -52,16 +57,18 @@ import { useAuthenticationStore } from '../stores/authentication';
                 this.productsStore.addProductToCart(this.getUser, this.current);
             },
 
-            rateProduct(rating){
+            async rateProduct(rating){
                 console.log(rating);
-                this.productsStore.changeRating(this.current, rating);
+                this.isLoading = true;
+                await this.productsStore.changeRating(this.current, rating);
+                await this.productsStore.displayItem();
+                this.current = this.productsStore.getProductById(this.$route.params.id);
+                this.isLoading = false;
             }
         },
 
         watch: {
-            objectRating(newRating, oldRating){
-                console.log("NEW", newRating);
-            }
+            
         }
     }
 </script>

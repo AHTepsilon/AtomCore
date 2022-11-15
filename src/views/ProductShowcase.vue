@@ -57,6 +57,7 @@
     import ProductComponent from '../components/ProductComponent.vue'
     import { createPinia, mapStores } from "pinia";
     import { useProductsStore } from '../stores/productStore';
+    import loadingIcon from '../components/minorComponents/loadingIcon.vue'
 
     export default{
         computed: {
@@ -65,6 +66,16 @@
                 return this.productsStore.getProducts;
             }
         },
+
+        data(){
+            return {
+               
+            }
+        },
+
+        components: {
+            loadingIcon
+        },  
 
         mounted(){
             this.productsStore.displayItem();
