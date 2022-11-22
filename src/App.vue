@@ -29,6 +29,11 @@ export default {
     return{
       
     }
+  },
+
+  mounted(){
+    const pinia = createPinia()
+        app.use(pinia)
   }
 
 }
