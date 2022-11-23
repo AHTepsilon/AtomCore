@@ -1,7 +1,7 @@
 /**
  * @vitest-environment happy-dom
  */
- import { mount, trigger } from "@vue/test-utils";
+ import { mount } from "@vue/test-utils";
  import { describe, expect, it } from "vitest";
  import NotAvailableModal from "../NotAvailableModal.vue";
 
