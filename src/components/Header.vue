@@ -6,19 +6,19 @@
 		</RouterLink>
 		
         <ul class="header_buttons">
-			<RouterLink :to="{name: 'addProduct'}" v-if="getUserIsAdmin"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
+			<RouterLink :to="{name: 'addProduct'}" v-if="getUserIsAdmin" class="header_buttons_add_product_router"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/adminBtn.png" alt=""/></li></RouterLink>
             <RouterLink :to="{name: 'shop'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/shoppingCartBtn.png" alt=""/></li></RouterLink>
             <RouterLink :to="{name: 'shopping-cart'}"><li @click="showCart = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/properCart.png" style="width: 35px; height: 35px"></li></RouterLink>
-            <li @click="showModal = true" class="header_buttons_item"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
+            <li @click="showModal = true" class="header_buttons_item" id="nav_buttons_item_NA"><img class="header_buttons_item_img" src="/notifBtn.png" alt=""/></li>
             <RouterLink :to="{name: 'login'}"><li class="header_buttons_item"><img class="header_buttons_item_img" src="/userBtn.png" alt=""/></li></RouterLink>
         </ul>
     </header>
     <nav>
         <ul class="nav_buttons">
             <RouterLink :to="{name: 'categories'}"><li class="nav_buttons_item">Categories</li></RouterLink>
-            <li @click="showModal = true" class="nav_buttons_item">Resources</li>
-            <li @click="showModal = true" class="nav_buttons_item">Subjects</li>
-            <li @click="showModal = true" class="nav_buttons_item">Shop by Bulk</li>
+            <li @click="showModal = true" class="nav_buttons_item" id="nav_buttons_item_NA">Resources</li>
+            <li @click="showModal = true" class="nav_buttons_item" id="nav_buttons_item_NA">Subjects</li>
+            <li @click="showModal = true" class="nav_buttons_item" id="nav_buttons_item_NA">Shop by Bulk</li>
         </ul>
 
         <div class="searchbox_div">
@@ -27,7 +27,7 @@
         </div> 
     </nav>
     <Transition name="bounce">
-        <NotAvailableModal v-if="showModal" @close="toggleModal" />
+        <NotAvailableModal v-if="showModal" @close="toggleModal" id="notAvailableModal"/>
     </Transition>
 </template>
 
@@ -50,10 +50,6 @@
             toggleModal(){
                 this.showModal = !this.showModal
             },
-
-            validateUser(){
-
-            }
         },
 
         computed: {

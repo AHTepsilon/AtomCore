@@ -34,4 +34,38 @@ describe("Add Product page testing", () => {
     await wrapper.find("button#editProduct_div_form_button").trigger("click");
     expect(wrapper.find("form#editProduct_div_form").exists()).toBeTruthy();
   });
+
+  it("should save the data sent in the add product form", async () => {
+    const wrapper = mount(AddProduct, {
+      global: {
+        plugins: [createTestingPinia()],
+      },
+    });
+    await wrapper.find("button#addProduct_div_form_button").trigger("click");
+    const nameInput = wrapper.find("input.addProduct_div_form_input")
+      
+    await nameInput.setValue('item test')
+
+    await wrapper.find("input.addProduct_div_form_button").trigger("click");
+
+    expect(nameInput.element.value).toBe('item test')
+
+  });
+
+  it("should save the data sent in the edit product form", async () => {
+    const wrapper = mount(AddProduct, {
+      global: {
+        plugins: [createTestingPinia()],
+      },
+    });
+    await wrapper.find("button#editProduct_div_form_button").trigger("click");
+    const nameInput = wrapper.find("input.addProduct_div_form_input")
+      
+    await nameInput.setValue('item test')
+
+    await wrapper.find("input.addProduct_div_form_button").trigger("click");
+
+    expect(nameInput.element.value).toBe('item test')
+
+  });
 });
