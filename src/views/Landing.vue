@@ -13,11 +13,10 @@
 
 <script>
 	import { mapStores, createPinia } from 'pinia';
-import ProductComponent from '../components/ProductComponent.vue'
 import {useAuthenticationStore} from '../stores/authentication'
 	export default{
   		components:{
-   	    	ProductComponent
+   	    	
 		},
 
 		computed: {

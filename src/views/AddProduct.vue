@@ -8,8 +8,8 @@
         <h2 class="form_title">Insert Data and Submit to Database</h2>
         <div class="addProduct_div">
 			<div>
-				<button class="addProduct_div_form_button" @click="setTrueAddForm">Add Items</button>
-				<form action="" class="addProduct_div_form" @submit.prevent = "productUploaded" v-if="showingAddForm">
+				<button id="addProduct_div_form_button" class="addProduct_div_form_button" @click="setTrueAddForm">Add Items</button>
+				<form action="" id="addProduct_div_form" class="addProduct_div_form" @submit.prevent = "productUploaded" v-if="showingAddForm">
                 <input class="addProduct_div_form_input" type="text" placeholder="Product Name" v-model="objectData.productName" required>
                 <select class="addProduct_div_form_select" name="" id="" v-model="objectData.productType" required>
                     <option value="" disabled selected>Type of Product</option>
@@ -39,8 +39,8 @@
 			</div>
 
 			<div>
-				<button class="addProduct_div_form_button" @click="setTrueShowForm">Edit Items</button>
-				<form action="" class="addProduct_div_form" v-if="showingEditForm" @submit.prevent = "productEdited">
+				<button id="editProduct_div_form_button" class="addProduct_div_form_button" @click="setTrueShowForm">Edit Items</button>
+				<form action="" id="editProduct_div_form" class="addProduct_div_form" v-if="showingEditForm" @submit.prevent = "productEdited">
 				<select class="addProduct_div_form_select" name="" id="" v-model="selectedProduct" @change="selectProductEditList($event)" required>
 					<option v-for="product in productsGet" v-bind:value="product.id">{{ product.id }}</option>
 				</select>

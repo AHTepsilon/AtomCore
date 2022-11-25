@@ -19,10 +19,10 @@
         const wrapper = mount(NotAvailableModal)
         expect(wrapper.find('button').exists()).toBeTruthy()
     })
-
+    
     it("should close the modal when the button is pressed", async () => {
         const wrapper = mount(NotAvailableModal)
-        await wrapper.find('button').trigger()
-        expect(wrapper.find('div').exists()).toBeFalsy()
+        await wrapper.find('button').trigger("click")
+        expect(wrapper.emitted()).toHaveProperty('close')
     })
  })
