@@ -1,7 +1,7 @@
 <template>
     <form class="login-form">
-        <input class="login-form-input login-form-item" type="email" placeholder="email" v-model="email">
-        <input class="login-form-input login-form-item" type="password" placeholder="password" v-model="password">
+        <input id="login-form-input-email" class="login-form-input login-form-item" type="email" placeholder="email" v-model="email">
+        <input id="login-form-input-pass" class="login-form-input login-form-item" type="password" placeholder="password" v-model="password">
         <button class="login-form-button login-form-item" @click.prevent="signIn">Submit</button>
 
         <RouterLink class="login-form-link login-form-item" :to="{name: 'register'}">Don't have a user? Sign up now!</RouterLink>

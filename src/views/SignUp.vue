@@ -1,8 +1,8 @@
 <template>
     <form class="signup-form">
-        <input class="signup-form-input signup-form-item" type="email" placeholder="email" v-model="email">
-        <input class="signup-form-input signup-form-item" type="password" placeholder="password" v-model="password">
-        <input class="signup-form-input signup-form-item" type="password" placeholder="Confirm Password" v-model="passwordConf">
+        <input id="signup-form-input-email" class="signup-form-input signup-form-item" type="email" placeholder="email" v-model="email">
+        <input id="signup-form-input-pass" class="signup-form-input signup-form-item" type="password" placeholder="password" v-model="password">
+        <input id="signup-form-input-passConf" class="signup-form-input signup-form-item" type="password" placeholder="Confirm Password" v-model="passwordConf">
         <button class="signup-form-button signup-form-item" @click.prevent="signUp">Sign Up</button>
         <RouterLink class="signup-form-link signup-form-item" :to="{name: 'login'}">Already have a user? Log in now!</RouterLink>
     </form>
